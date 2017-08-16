@@ -55,6 +55,10 @@ object lucia
 	}
 	
 	method habilidad() = habilidad
+	method habilidad(habil)
+	{
+		habilidad = habil
+	}
 	
 	
 	method interpretaBien(cancion) = cancion.letra().contains("familia")
@@ -67,22 +71,22 @@ object lucia
 
 object luisAlberto
 {
-	method habilidad()
+	
+	method habilidad(guitarra)
 	{
-		
-		
-		
+		return 8 * guitarra.valor() // max 100
 	}
 	
+	method interpretaBien(cancion) = true
 	
-	method interpretaBien()
+	method cobra(presentacion)
 	{
-		
+		fechaPresentacion(presentacion)
 	}
 	
-	method cobra()
+	method fechaPresentacion(presentacion)
 	{
-		
+		presentacion.fecha()
 	}
 }
 
@@ -124,4 +128,27 @@ object laTrastienda
 	method fecha() = fecha
 	method participa() = artistas
 	method capacidad() = capacidad
+}
+
+// Guitarras
+
+object fender
+{
+	const valor = 10
+	method valor() = valor
+}
+
+object gibson
+{
+	var valor = 15
+	method valor() = valor
+	method valor(unValor)
+	{
+		valor = unValor
+	}
+	
+	method estasRota()
+	{
+		valor = 5
+	}
 }
