@@ -14,6 +14,12 @@ object joaquin
 		grupo = grupete
 	}
 	
+	method agrupate(grupoNuevo)
+	{
+		grupo = grupoNuevo
+		habilidad = 25
+	}
+	
 	method dejaGrupo()
 	{
 		grupo = "Solista"
@@ -46,6 +52,7 @@ object lucia
 	method agrupate(grupoNuevo)
 	{
 		grupo = grupoNuevo
+		habilidad = 50
 	}
 	
 	method dejaGrupo()
@@ -63,9 +70,9 @@ object lucia
 	
 	method interpretaBien(cancion) = cancion.letra().contains("familia")
 	
-	method cobra()
+	method cobra(presentacion)
 	{
-		
+		return 0 // arreglar
 	}
 }
 
@@ -81,12 +88,12 @@ object luisAlberto
 	
 	method cobra(presentacion)
 	{
-		fechaPresentacion(presentacion)
+		return 0 // arreglar
 	}
 	
 	method fechaPresentacion(presentacion)
 	{
-		presentacion.fecha()
+		return presentacion.fecha()
 	}
 }
 
@@ -118,16 +125,27 @@ object lunaPark
 	method fecha() = fecha
 	method participa() = artistas
 	method capacidad() = capacidad	
+	method costo() = 0 // arreglar
 }
 
 object laTrastienda
 {
-	const fecha = "15/11/2017"
-	const artistas = [joaquin,lucia,luisAlberto]
+	var fecha = "15/11/2017"
+	var artistas = [joaquin,lucia,luisAlberto]
 	var capacidad = 400
+	method artistas() = artistas
+	method artistas(unosArtistas)
+	{
+		artistas = unosArtistas
+	}
 	method fecha() = fecha
+	method fecha(unaFecha)
+	{
+		fecha = unaFecha
+	}
 	method participa() = artistas
 	method capacidad() = capacidad
+	method costo() = 0 // arreglar
 }
 
 // Guitarras
