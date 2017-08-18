@@ -107,7 +107,14 @@ object luisAlberto
 	
 	method cobra(presentacion)
 	{
-		return 0 // arreglar
+		if (presentacion.antesDeSept())
+		{
+			return 1000
+		}
+		else
+		{
+			return 1200
+		}
 	}
 	
 	method fechaPresentacion(presentacion)
@@ -143,11 +150,13 @@ object lunaPark
 	const fecha = "20/04/2017"
 	const artistas = [joaquin,lucia,luisAlberto]
 	const capacidad = 9290
+	const antesDeSept = true
+	method antesDeSept() = antesDeSept
 	method fecha() = fecha
 	method artistas() = artistas
 	method participa() = artistas
 	method capacidad() = capacidad	
-	method costo() = 0 // arreglar
+	method costo() = artistas.sum({artista =>artista.cobra(self)})
 }
 
 object laTrastienda
@@ -155,7 +164,9 @@ object laTrastienda
 	var fecha = "15/11/2017"
 	var artistas = [joaquin,lucia,luisAlberto]
 	var capacidad = 400
+	const antesDeSept = false
 	var sabado = false
+	method antesDeSept() = antesDeSept
 	method artistas() = artistas
 	method artistas(unosArtistas)
 	{
@@ -187,7 +198,7 @@ object laTrastienda
 	{
 		sabado = true
 	}
-	method costo() = 0 // arreglar
+	method costo() = artistas.sum({artista =>artista.cobra(self)})
 }
 
 // Guitarras
