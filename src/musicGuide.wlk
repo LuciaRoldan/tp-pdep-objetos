@@ -8,6 +8,12 @@ object joaquin
 	var grupo = "Pimpinela"
 	var cheque = 50
 	
+	method habilidad() = habilidad
+	method habilidad(unaHabilidad)
+	{
+		habilidad = unaHabilidad
+	}
+	
 	method grupo() = grupo
 	method grupo(grupete)
 	{
@@ -26,15 +32,20 @@ object joaquin
 		habilidad = 20
 	}
 	
-	method habilidad() = habilidad
+	
 	
 	method interpretaBien(cancion) = (cancion.dura() > 300)
 	
 	method cobra(presentacion)
 	{
-	//	self.cuantoCobra(presentacion)
+		if ( presentacion.artistas().size() == 1 and presentacion.artistas().contains(self))
+		{
+			cheque = 100
+		}
 		return cheque
 	}
+	
+	
 	
 }
 
@@ -72,7 +83,14 @@ object lucia
 	
 	method cobra(presentacion)
 	{
-		return 0 // arreglar
+		if (presentacion.capacidad() > 5000)
+		{
+			return 500
+		}
+		else
+		{
+			return 400
+		}
 	}
 }
 
@@ -81,7 +99,8 @@ object luisAlberto
 	
 	method habilidad(guitarra)
 	{
-		return 8 * guitarra.valor() // max 100
+		
+		return (8 * guitarra.valor()).min(100)
 	}
 	
 	method interpretaBien(cancion) = true
@@ -95,6 +114,8 @@ object luisAlberto
 	{
 		return presentacion.fecha()
 	}
+	
+	
 }
 
 //Canciones
@@ -123,6 +144,7 @@ object lunaPark
 	const artistas = [joaquin,lucia,luisAlberto]
 	const capacidad = 9290
 	method fecha() = fecha
+	method artistas() = artistas
 	method participa() = artistas
 	method capacidad() = capacidad	
 	method costo() = 0 // arreglar
@@ -133,6 +155,7 @@ object laTrastienda
 	var fecha = "15/11/2017"
 	var artistas = [joaquin,lucia,luisAlberto]
 	var capacidad = 400
+	var sabado = false
 	method artistas() = artistas
 	method artistas(unosArtistas)
 	{
@@ -145,6 +168,25 @@ object laTrastienda
 	}
 	method participa() = artistas
 	method capacidad() = capacidad
+	method capacidad(unaCapacidad)
+	{
+		capacidad = unaCapacidad
+	}
+	method queCapacidad()
+	{
+		if (sabado)
+		{
+			return 700
+		}
+		else
+		{
+			return 400
+		}
+	}
+	method esSabado()
+	{
+		sabado = true
+	}
 	method costo() = 0 // arreglar
 }
 

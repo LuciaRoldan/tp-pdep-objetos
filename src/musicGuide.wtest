@@ -53,22 +53,22 @@ test "Queremos saber si Joaquín interpreta bien la canción “Cisne”"
 
 test "Queremos saber si Lucía interpreta bien la canción “La Familia”"
 {
-	assert.that(joaquin.interpretaBien(laFamilia))
+	assert.that(lucia.interpretaBien(laFamilia))
 }
 
 test "Queremos saber si Lucía interpreta bien la canción “Cisne”"
 {
-	assert.that(joaquin.interpretaBien(cisne))
+	assert.that(lucia.interpretaBien(cisne).negate())
 }
 
 test "Queremos saber si Luis Alberto interpreta bien la canción “La Familia”"
 {
-	assert.that(joaquin.interpretaBien(laFamilia))
+	assert.that(luisAlberto.interpretaBien(laFamilia))
 }
 
 test "Queremos saber si Luis Alberto interpreta bien la canción “Cisne”"
 {
-	assert.that(joaquin.interpretaBien(cisne))
+	assert.that(luisAlberto.interpretaBien(cisne))
 }
 
 test "Queremos saber cuánto cobra Joaquín por la presentación del Luna Park"
@@ -79,20 +79,21 @@ test "Queremos saber cuánto cobra Joaquín por la presentación del Luna Park"
 test "Modificar la presentación de la Trastienda para que solo actúe Joaquín.
 Queremos saber cuánto cobra Joaquín por la presentación de la Trastienda del 15/11/2017"
 {
-	laTrastienda.artistas(joaquin)
+	laTrastienda.artistas([joaquin])
 	assert.equals(joaquin.cobra(laTrastienda),100)
 }
 
 test "Queremos saber la capacidad de La Trastienda para el 05 de agosto del 2017"
 {
 	laTrastienda.fecha("05/08/2017")
-	assert.equals(laTrastienda.capacidad(),700)
+	laTrastienda.esSabado()
+	assert.equals(laTrastienda.queCapacidad(),700)
 }
 
 test "Queremos saber la capacidad de La Trastienda para el 08 de agosto del 2017"
 {
-	laTrastienda.fecha("05/08/2017")
-	assert.equals(laTrastienda.capacidad(),700)
+	laTrastienda.fecha("08/08/2017")
+	assert.equals(laTrastienda.queCapacidad(),400)
 }
 
 test "Queremos saber cuánto cobra Lucía por la presentación del Luna Park"
@@ -102,7 +103,7 @@ test "Queremos saber cuánto cobra Lucía por la presentación del Luna Park"
 
 test "Queremos saber cuánto cobra Lucía por la presentación de la Trastienda"
 {
-	assert.equals(lucia.cobra(laTrastienda),500)
+	assert.equals(lucia.cobra(laTrastienda),400)
 }
 
 test "Queremos saber cuánto cobra Luis Alberto por la presentación del Luna Park"
