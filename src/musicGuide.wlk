@@ -32,20 +32,18 @@ object joaquin
 		habilidad = 20
 	}
 	
-	
-	
 	method interpretaBien(cancion) = (cancion.dura() > 300)
+	
+	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self)
 	
 	method cobra(presentacion)
 	{
-		if ( presentacion.artistas().size() == 1 and presentacion.artistas().contains(self))
+		if ( self.sosUnicoArtista(presentacion))
 		{
 			cheque = 100
 		}
 		return cheque
 	}
-	
-	
 	
 }
 
@@ -78,12 +76,13 @@ object lucia
 		habilidad = habil
 	}
 	
-	
 	method interpretaBien(cancion) = cancion.letra().contains("familia")
+	
+	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
 	
 	method cobra(presentacion)
 	{
-		if (presentacion.capacidad() > 5000)
+		if (self.lugarConcurrido(presentacion))
 		{
 			return 500
 		}
@@ -92,6 +91,11 @@ object lucia
 			return 400
 		}
 	}
+}
+
+object cosita
+{
+	method algo() =1
 }
 
 object luisAlberto
