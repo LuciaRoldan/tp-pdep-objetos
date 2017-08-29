@@ -22,11 +22,19 @@ object joaquin inherits Musico
 		habilidad = 20
 	}
 	
+<<<<<<< HEAD
 	override method interpretaBien(cancion) = (cancion.duracion() > 300)
 	
 	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self) 
 	
 	override method cobra(presentacion)
+=======
+	method interpretaBien(cancion) = (cancion.dura() > 300)
+	
+	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self)
+	
+	method cobra(presentacion)
+>>>>>>> develop
 	{
 		if ( self.sosUnicoArtista(presentacion))
 		{
@@ -57,11 +65,19 @@ object lucia inherits Musico
 	}
 	
 	
+<<<<<<< HEAD
 	override method interpretaBien(cancion) = cancion.letra().contains("familia")
 	
 	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
 	
 	override method cobra(presentacion)
+=======
+	method interpretaBien(cancion) = cancion.letra().contains("familia")
+	
+	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
+	
+	method cobra(presentacion)
+>>>>>>> develop
 	{
 		if (self.lugarConcurrido(presentacion))
 		{
@@ -74,7 +90,16 @@ object lucia inherits Musico
 	}
 }
 
+<<<<<<< HEAD
 object luisAlberto inherits Musico
+=======
+object cosita
+{
+	method algo() =1
+}
+
+object luisAlberto
+>>>>>>> develop
 {
 	
 	override method agrupate(grupoNuevo)
