@@ -24,9 +24,11 @@ object joaquin inherits Musico
 	
 	override method interpretaBien(cancion) = (cancion.duracion() > 300)
 	
+	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self) 
+	
 	override method cobra(presentacion)
 	{
-		if ( presentacion.artistas().size() == 1 and presentacion.artistas().contains(self))
+		if ( self.sosUnicoArtista(presentacion))
 		{
 			cheque = 100
 		}
@@ -57,9 +59,11 @@ object lucia inherits Musico
 	
 	override method interpretaBien(cancion) = cancion.letra().contains("familia")
 	
+	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
+	
 	override method cobra(presentacion)
 	{
-		if (presentacion.capacidad() > 5000)
+		if (self.lugarConcurrido(presentacion))
 		{
 			return 500
 		}
