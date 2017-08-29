@@ -45,56 +45,40 @@ Luis Alberto toca con la Gibson. Queremos saber su habilidad."
 	assert.equals(luisAlberto.habilidad(gibson),40)
 }
 
-<<<<<<< HEAD
-test "Queremos saber si Joaquín interpreta bien la canción 'La Familia'"
-=======
+
 test "Queremos saber si Joaquin interpreta bien la cancion 'La Familia'"
->>>>>>> develop
+
 {
 	assert.that(joaquin.interpretaBien(laFamilia).negate())
 }
 
-<<<<<<< HEAD
-test "Queremos saber si Joaquín interpreta bien la canción 'Cisne'"
-=======
+
+
 test "Queremos saber si Joaquin interpreta bien la cancion 'Cisne'"
->>>>>>> develop
 {
 	assert.that(joaquin.interpretaBien(cisne))
 }
 
-<<<<<<< HEAD
+
 test "Queremos saber si Lucía interpreta bien la canción 'La Familia'"
-=======
-test "Queremos saber si Lucia interpreta bien la cancion 'La Familia'"
->>>>>>> develop
 {
 	assert.that(lucia.interpretaBien(laFamilia))
 }
 
-<<<<<<< HEAD
-test "Queremos saber si Lucía interpreta bien la canción 'Cisne'"
-=======
+
 test "Queremos saber si Lucia interpreta bien la cancion 'Cisne'"
->>>>>>> develop
 {
 	assert.that(lucia.interpretaBien(cisne).negate())
 }
 
-<<<<<<< HEAD
-test "Queremos saber si Luis Alberto interpreta bien la canción 'La Familia'"
-=======
+
 test "Queremos saber si Luis Alberto interpreta bien la cancion 'La Familia'"
->>>>>>> develop
 {
 	assert.that(luisAlberto.interpretaBien(laFamilia))
 }
 
-<<<<<<< HEAD
+
 test "Queremos saber si Luis Alberto interpreta bien la canción 'Cisne'"
-=======
-test "Queremos saber si Luis Alberto interpreta bien la cancion 'Cisne'"
->>>>>>> develop
 {
 	assert.that(luisAlberto.interpretaBien(cisne))
 }

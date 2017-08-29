@@ -22,19 +22,12 @@ object joaquin inherits Musico
 		habilidad = 20
 	}
 	
-<<<<<<< HEAD
 	override method interpretaBien(cancion) = (cancion.duracion() > 300)
-	
-	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self) 
-	
-	override method cobra(presentacion)
-=======
-	method interpretaBien(cancion) = (cancion.dura() > 300)
 	
 	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self)
 	
-	method cobra(presentacion)
->>>>>>> develop
+	override method cobra(presentacion)
+
 	{
 		if ( self.sosUnicoArtista(presentacion))
 		{
@@ -64,20 +57,12 @@ object lucia inherits Musico
 		habilidad = 70
 	}
 	
-	
-<<<<<<< HEAD
 	override method interpretaBien(cancion) = cancion.letra().contains("familia")
 	
 	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
 	
 	override method cobra(presentacion)
-=======
-	method interpretaBien(cancion) = cancion.letra().contains("familia")
-	
-	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
-	
-	method cobra(presentacion)
->>>>>>> develop
+
 	{
 		if (self.lugarConcurrido(presentacion))
 		{
@@ -90,16 +75,8 @@ object lucia inherits Musico
 	}
 }
 
-<<<<<<< HEAD
-object luisAlberto inherits Musico
-=======
-object cosita
-{
-	method algo() =1
-}
 
-object luisAlberto
->>>>>>> develop
+object luisAlberto inherits Musico
 {
 	
 	override method agrupate(grupoNuevo)
@@ -110,7 +87,7 @@ object luisAlberto
 	{
 	}
 	
-	 method habilidad(guitarra)
+	method habilidad(guitarra)
 	{
 		
 		return (8 * guitarra.valor()).min(100)
@@ -168,7 +145,7 @@ object lunaPark inherits Presentacion("20/04/2017",[joaquin,lucia,luisAlberto],9
 {
 	method antesDeSept(unaFecha)
 	{
-		unaFecha.date()
+		return true
 	}
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
 }
