@@ -1,4 +1,8 @@
 import musicGuide.*
+import presentacion.*
+import cancion.*
+import guitarra.*
+import musico.*
 
 test "Joaquín canta en el grupo Pimpinela. Queremos conocer su habilidad" 
 {

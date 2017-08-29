@@ -1,87 +1,63 @@
+import musico.*
+import presentacion.*
+import cancion.*
+import guitarra.*
+
 //Music Guide
 
 //Musicos
 
-object joaquin
+object joaquin inherits Musico
 {
-	var habilidad = 25
-	var grupo = "Pimpinela"
-	var cheque = 50
 	
-	method habilidad() = habilidad
-	method habilidad(unaHabilidad)
-	{
-		habilidad = unaHabilidad
-	}
-	
-	method grupo() = grupo
-	method grupo(grupete)
-	{
-		grupo = grupete
-	}
-	
-	method agrupate(grupoNuevo)
+	override method agrupate(grupoNuevo)
 	{
 		grupo = grupoNuevo
 		habilidad = 25
 	}
 	
-	method dejaGrupo()
+	override method dejaGrupo()
 	{
 		grupo = "Solista"
 		habilidad = 20
 	}
 	
+	override method interpretaBien(cancion) = (cancion.duracion() > 300)
 	
-	
-	method interpretaBien(cancion) = (cancion.dura() > 300)
-	
-	method cobra(presentacion)
+	override method cobra(presentacion)
 	{
 		if ( presentacion.artistas().size() == 1 and presentacion.artistas().contains(self))
 		{
 			cheque = 100
 		}
+		else
+		{
+			cheque = 50
+		}
 		return cheque
 	}
 	
-	
-	
 }
 
-object lucia
+object lucia inherits Musico
 {
-	var habilidad = 50
-	var grupo = "Pimpinela"
 	
-	method grupo() = grupo
-	method grupo(grupete)
-	{
-		grupo = grupete
-	}
-	
-	method agrupate(grupoNuevo)
+	override method agrupate(grupoNuevo)
 	{
 		grupo = grupoNuevo
 		habilidad = 50
 	}
 	
-	method dejaGrupo()
+	override method dejaGrupo()
 	{
 		grupo = "Solista"
 		habilidad = 70
 	}
 	
-	method habilidad() = habilidad
-	method habilidad(habil)
-	{
-		habilidad = habil
-	}
 	
+	override method interpretaBien(cancion) = cancion.letra().contains("familia")
 	
-	method interpretaBien(cancion) = cancion.letra().contains("familia")
-	
-	method cobra(presentacion)
+	override method cobra(presentacion)
 	{
 		if (presentacion.capacidad() > 5000)
 		{
@@ -94,18 +70,26 @@ object lucia
 	}
 }
 
-object luisAlberto
+object luisAlberto inherits Musico
 {
 	
-	method habilidad(guitarra)
+	override method agrupate(grupoNuevo)
+	{
+	}
+	
+	override method dejaGrupo()
+	{
+	}
+	
+	 method habilidad(guitarra)
 	{
 		
 		return (8 * guitarra.valor()).min(100)
 	}
 	
-	method interpretaBien(cancion) = true
+	override method interpretaBien(cancion) = true
 	
-	method cobra(presentacion)
+	override method cobra(presentacion)
 	{
 		if (presentacion.antesDeSept())
 		{
@@ -127,62 +111,45 @@ object luisAlberto
 
 //Canciones
 
-object cisne
-{
-	const duracion = 312
-	const letra = "Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar"
-	method dura() = duracion
-	method letra() = letra
+object cisne inherits Cancion(312,"Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
+{	
 }
 
-object laFamilia
+object laFamilia inherits Cancion(264,"Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+{	
+}
+
+//Guitarras
+
+object fender inherits Guitarra(10)
 {
-	const duracion = 264
-	const letra = "Quiero brindar por mi gente sencilla, por el amor brindo por la familia"
-	method dura() = duracion
-	method letra() = letra
+}
+
+object gibson inherits Guitarra(15)
+{	
+	method estasRota()
+	{
+		valor = 5
+	}
 }
 
 //Presentaciones
 
-object lunaPark
+object lunaPark inherits Presentacion("20/04/2017",[joaquin,lucia,luisAlberto],9290)
 {
-	const fecha = "20/04/2017"
-	const artistas = [joaquin,lucia,luisAlberto]
-	const capacidad = 9290
-	const antesDeSept = true
-	method antesDeSept() = antesDeSept
-	method fecha() = fecha
-	method artistas() = artistas
-	method participa() = artistas
-	method capacidad() = capacidad	
+	method antesDeSept(unaFecha)
+	{
+		unaFecha.date()
+	}
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
 }
 
-object laTrastienda
+object laTrastienda inherits Presentacion("15/11/2017",[joaquin,lucia,luisAlberto],400)
 {
-	var fecha = "15/11/2017"
-	var artistas = [joaquin,lucia,luisAlberto]
-	var capacidad = 400
 	const antesDeSept = false
 	var sabado = false
 	method antesDeSept() = antesDeSept
-	method artistas() = artistas
-	method artistas(unosArtistas)
-	{
-		artistas = unosArtistas
-	}
-	method fecha() = fecha
-	method fecha(unaFecha)
-	{
-		fecha = unaFecha
-	}
-	method participa() = artistas
-	method capacidad() = capacidad
-	method capacidad(unaCapacidad)
-	{
-		capacidad = unaCapacidad
-	}
+
 	method queCapacidad()
 	{
 		if (sabado)
@@ -199,27 +166,4 @@ object laTrastienda
 		sabado = true
 	}
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
-}
-
-// Guitarras
-
-object fender
-{
-	const valor = 10
-	method valor() = valor
-}
-
-object gibson
-{
-	var valor = 15
-	method valor() = valor
-	method valor(unValor)
-	{
-		valor = unValor
-	}
-	
-	method estasRota()
-	{
-		valor = 5
-	}
 }
