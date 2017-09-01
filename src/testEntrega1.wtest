@@ -3,137 +3,145 @@ import presentacion.*
 import cancion.*
 import guitarra.*
 import musico.*
+import album.*
 
-test "Joaquin canta en el grupo Pimpinela. Queremos conocer su habilidad" 
+describe "Entrega1" 
 {
-	joaquin.agrupate("pimpinela")
-	assert.equals(joaquin.habilidad(),25)
+	test "Joaquin canta en el grupo Pimpinela. Queremos conocer su habilidad" 
+	{
+		joaquin.agrupate("pimpinela")
+		assert.equals(joaquin.habilidad(),25)
+	}
+
+	test "Joaquin canta en el grupo Pimpinela, y decide lanzar su carrera solista (deja el grupo). Queremos conocer su habilidad."
+	{
+		joaquin.dejaGrupo()
+		assert.equals(joaquin.habilidad(),20)
+	}
+
+	test "Lucia canta en el grupo Pimpinela. Queremos saber su habilidad."
+	{
+		lucia.agrupate("pimpinela")
+		assert.equals(lucia.habilidad(),50)
+	}
+
+	test "Lucia canta en el grupo Pimpinela, y lanza su carrera solista (deja el grupo). Queremos conocer su habilidad."
+	{
+		lucia.dejaGrupo()
+		assert.equals(lucia.habilidad(),70)
+	}
+
+	test "Luis Alberto toca con la Fender. Queremos saber su habilidad"
+	{
+		luisAlberto.tuGuitarraEs(fender)
+		assert.equals(luisAlberto.habilidad(),80)
+	}
+
+	test "Luis Alberto toca ahora con la Gibson sana. Queremos saber su habilidad."
+	{
+		luisAlberto.tuGuitarraEs(gibson)
+		assert.equals(luisAlberto.habilidad(),100)
+	}
+
+	test "Alguien trata mal a la Gibson y ahora no esta sana.
+	Luis Alberto toca con la Gibson. Queremos saber su habilidad."
+	{
+		gibson.estasRota()
+		luisAlberto.tuGuitarraEs(gibson)
+		assert.equals(luisAlberto.habilidad(),40)
+	}
+
+
+	test "Queremos saber si Joaquin interpreta bien la cancion 'La Familia'"
+
+	{
+		assert.that(joaquin.interpretaBien(laFamilia).negate())
+	}
+
+
+
+	test "Queremos saber si Joaquin interpreta bien la cancion 'Cisne'"
+	{
+		assert.that(joaquin.interpretaBien(cisne))
+	}
+
+
+	test "Queremos saber si Lucía interpreta bien la canción 'La Familia'"
+	{
+		assert.that(lucia.interpretaBien(laFamilia))
+	}
+
+
+	test "Queremos saber si Lucia interpreta bien la cancion 'Cisne'"
+	{
+		assert.that(lucia.interpretaBien(cisne).negate())
+	}
+
+
+	test "Queremos saber si Luis Alberto interpreta bien la cancion 'La Familia'"
+	{
+		assert.that(luisAlberto.interpretaBien(laFamilia))
+	}
+
+
+	test "Queremos saber si Luis Alberto interpreta bien la canción 'Cisne'"
+	{
+		assert.that(luisAlberto.interpretaBien(cisne))
+	}
+
+	test "Queremos saber cuanto cobra Joaquin por la presentacion del Luna Park"
+	{
+		assert.equals(joaquin.cobra(lunaPark),50)
+	}
+
+	test "Modificar la presentacion de la Trastienda para que solo actue Joaquin.
+	Queremos saber cuanto cobra Joaquin por la presentacion de la Trastienda del 15/11/2017"
+	{
+		laTrastienda.artistas([joaquin])
+		assert.equals(joaquin.cobra(laTrastienda),100)
+	}
+
+	test "Queremos saber la capacidad de La Trastienda para el 05 de agosto del 2017"
+	{
+		laTrastienda.fecha().initialize(05,08,2017)
+		laTrastienda.esSabado()
+		assert.equals(laTrastienda.queCapacidad(),700)
+	}
+
+	test "Queremos saber la capacidad de La Trastienda para el 08 de agosto del 2017"
+	{
+		laTrastienda.fecha().initialize(08,08,2017)
+		assert.equals(laTrastienda.queCapacidad(),400)
+	}
+
+	test "Queremos saber cuanto cobra Lucia por la presentacion del Luna Park"
+	{
+		assert.equals(lucia.cobra(lunaPark),500)
+	}
+
+	test "Queremos saber cuanto cobra Lucia por la presentacion de la Trastienda"
+	{
+		assert.equals(lucia.cobra(laTrastienda),400)
+	}
+
+	test "Queremos saber cuanto cobra Luis Alberto por la presentacion del Luna Park"
+	{
+		assert.equals(luisAlberto.cobra(lunaPark),1000)
+	}
+
+	test "Queremos saber cuanto cobra Luis Alberto por la presentacion de La Trastienda"
+	{
+		assert.equals(luisAlberto.cobra(laTrastienda),1200)
+	}
+
+	test "Queremos saber el costo de la presentacion del Luna Park"
+	{
+		assert.equals(lunaPark.costo(),1550)
+	}
+
+	test "Queremos saber el costo de la presentacion de la Trastienda el 15/11/2017"
+	{
+		assert.equals(laTrastienda.costo(),1650)
+	}
 }
 
-test "Joaquin canta en el grupo Pimpinela, y decide lanzar su carrera solista (deja el grupo). Queremos conocer su habilidad."
-{
-	joaquin.dejaGrupo()
-	assert.equals(joaquin.habilidad(),20)
-}
-
-test "Lucia canta en el grupo Pimpinela. Queremos saber su habilidad."
-{
-	lucia.agrupate("pimpinela")
-	assert.equals(lucia.habilidad(),50)
-}
-
-test "Lucia canta en el grupo Pimpinela, y lanza su carrera solista (deja el grupo). Queremos conocer su habilidad."
-{
-	lucia.dejaGrupo()
-	assert.equals(lucia.habilidad(),70)
-}
-
-test "Luis Alberto toca con la Fender. Queremos saber su habilidad"
-{
-	assert.equals(luisAlberto.habilidad(fender),80)
-}
-
-test "Luis Alberto toca ahora con la Gibson sana. Queremos saber su habilidad."
-{
-	assert.equals(luisAlberto.habilidad(gibson),100)
-}
-
-test "Alguien trata mal a la Gibson y ahora no esta sana.
-Luis Alberto toca con la Gibson. Queremos saber su habilidad."
-{
-	gibson.estasRota()
-	assert.equals(luisAlberto.habilidad(gibson),40)
-}
-
-
-test "Queremos saber si Joaquin interpreta bien la cancion 'La Familia'"
-
-{
-	assert.that(joaquin.interpretaBien(laFamilia).negate())
-}
-
-
-
-test "Queremos saber si Joaquin interpreta bien la cancion 'Cisne'"
-{
-	assert.that(joaquin.interpretaBien(cisne))
-}
-
-
-test "Queremos saber si Lucía interpreta bien la canción 'La Familia'"
-{
-	assert.that(lucia.interpretaBien(laFamilia))
-}
-
-
-test "Queremos saber si Lucia interpreta bien la cancion 'Cisne'"
-{
-	assert.that(lucia.interpretaBien(cisne).negate())
-}
-
-
-test "Queremos saber si Luis Alberto interpreta bien la cancion 'La Familia'"
-{
-	assert.that(luisAlberto.interpretaBien(laFamilia))
-}
-
-
-test "Queremos saber si Luis Alberto interpreta bien la canción 'Cisne'"
-{
-	assert.that(luisAlberto.interpretaBien(cisne))
-}
-
-test "Queremos saber cuanto cobra Joaquin por la presentacion del Luna Park"
-{
-	assert.equals(joaquin.cobra(lunaPark),50)
-}
-
-test "Modificar la presentacion de la Trastienda para que solo actue Joaquin.
-Queremos saber cuanto cobra Joaquin por la presentacion de la Trastienda del 15/11/2017"
-{
-	laTrastienda.artistas([joaquin])
-	assert.equals(joaquin.cobra(laTrastienda),100)
-}
-
-test "Queremos saber la capacidad de La Trastienda para el 05 de agosto del 2017"
-{
-	laTrastienda.fecha("05/08/2017")
-	laTrastienda.esSabado()
-	assert.equals(laTrastienda.queCapacidad(),700)
-}
-
-test "Queremos saber la capacidad de La Trastienda para el 08 de agosto del 2017"
-{
-	laTrastienda.fecha("08/08/2017")
-	assert.equals(laTrastienda.queCapacidad(),400)
-}
-
-test "Queremos saber cuanto cobra Lucia por la presentacion del Luna Park"
-{
-	assert.equals(lucia.cobra(lunaPark),500)
-}
-
-test "Queremos saber cuanto cobra Lucia por la presentacion de la Trastienda"
-{
-	assert.equals(lucia.cobra(laTrastienda),400)
-}
-
-test "Queremos saber cuanto cobra Luis Alberto por la presentacion del Luna Park"
-{
-	assert.equals(luisAlberto.cobra(lunaPark),1000)
-}
-
-test "Queremos saber cuanto cobra Luis Alberto por la presentacion de La Trastienda"
-{
-	assert.equals(luisAlberto.cobra(laTrastienda),1200)
-}
-
-test "Queremos saber el costo de la presentacion del Luna Park"
-{
-	assert.equals(lunaPark.costo(),1550)
-}
-
-test "Queremos saber el costo de la presentacion de la Trastienda el 15/11/2017"
-{
-	assert.equals(laTrastienda.costo(),1650)
-}

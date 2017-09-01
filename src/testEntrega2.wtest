@@ -1,0 +1,23 @@
+import musicGuide.*
+import presentacion.*
+import cancion.*
+import guitarra.*
+import musico.*
+import album.*
+
+describe "Entrega2" 
+{
+	fixture 
+	{
+		joaquin.agregaAlbum([especialLaFamilia])
+		soledad.agregaAlbum([laSole])
+		luisAlberto.agregaAlbum([paraLosArboles,justCrisantemo])
+		
+	}
+	
+	test "es Lucia mala?"
+	{
+		assert.that(true)
+	}
+	
+}

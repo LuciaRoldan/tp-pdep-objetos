@@ -4,6 +4,7 @@ class Musico {
 	var habilidad = 00
 	var cheque
 	var grupo = "Solista"
+	const albumes = []
 	
 	method grupo() = grupo
 	method grupo(grupete)
@@ -31,6 +32,10 @@ class Musico {
 	method interpretaBien(cancion)	
 	method cobra(presentacion)
 	method esSolista() = self.grupo() == "Solista"
+	method edito() = albumes
+	method agregaAlbum(unAlbum) = self.edito().add(unAlbum)
+	
+	
 }
 
 class MusicoDeGrupo inherits Musico
@@ -70,7 +75,7 @@ class MusicoPopular inherits Musico
 	}
 	override method interpretaBien(cancion)
 	{
-		cancion.letra().contains(palabraMagica)
+		return cancion.letra().contains(palabraMagica)
 	}
 }
 
@@ -114,7 +119,7 @@ object lucia inherits MusicoPopular("Pimpinela",70,"familia")
 object luisAlberto inherits Musico
 {
 	
-	method elegiTuGuitarra(guitarra)
+	method tuGuitarraEs(guitarra)
 	{
 		
 		habilidad = (8 * guitarra.valor()).min(100)
@@ -124,7 +129,7 @@ object luisAlberto inherits Musico
 	
 	override method cobra(presentacion)
 	{
-		if (presentacion.antesDeSept())
+		if (presentacion.esAntesDeSeptiembre())
 		{
 			return 1000
 		}
@@ -140,3 +145,21 @@ object luisAlberto inherits Musico
 	}
 	
 }
+
+object kike inherits MusicoDeGrupo("Solista",60,20) 
+{ 
+  override method interpretaBien(cancion) 
+  { 
+  } 
+  override method cobra(presentacion) 
+  { 
+  } 
+} 
+ 
+object soledad inherits MusicoPopular("Solista",55,"amor") 
+{ 
+   
+  override method cobra(presentacion) 
+  { 
+  	}
+  	}
