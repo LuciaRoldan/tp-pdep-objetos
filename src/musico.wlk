@@ -3,7 +3,7 @@ class Musico {
 
 	var habilidad = 00
 	var cheque
-	var grupo = "Pimpinela"
+	var grupo = "Solista"
 	
 	method grupo() = grupo
 	method grupo(grupete)
@@ -139,22 +139,4 @@ object luisAlberto inherits Musico
 		return presentacion.fecha()
 	}
 	
-}
-
-object kike inherits MusicoDeGrupo("Solista",60,20)
-{
-	override method interpretaBien(cancion)
-	{
-	}
-	override method cobra(presentacion)
-	{
-	}
-}
-
-object soledad inherits MusicoPopular("Solista",55,"amor")
-{
-	
-	override method cobra(presentacion)
-	{
-	}
 }
