@@ -18,4 +18,14 @@ class Guitarra
 	}
 }
 
+object fender inherits Guitarra(10)
+{
+}
 
+object gibson inherits Guitarra(15)
+{	
+	method estasRota()
+	{
+		valor = 5
+	}
+}
