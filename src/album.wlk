@@ -12,10 +12,6 @@ class Album {
 		titulo = tituloNuevo
 	}
 	method temas() = temas
-	method temas(temaNuevo)
-	{
-		temas = temaNuevo
-	}
 	method agregaTema(unTema) = self.temas().add(unTema)
 	method fechaDeLanzamiento() = fechaDeLanzamiento 
 	method fechaDeLanzamiento(unaDia, unMes, unAnio)
