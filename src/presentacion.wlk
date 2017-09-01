@@ -4,24 +4,24 @@ import musico.*
 
 class Presentacion
 {
-	var fecha
+	var fecha = new Date()
 	var artistas
 	var capacidad
 	
 	constructor()
 	{
 	}
-	constructor(unaFecha,unosArtistas,unaCapacidad)
+	constructor(unaDia, unMes, unAnio,unosArtistas,unaCapacidad)
 	{
-		self.fecha(unaFecha)
+		self.fecha(unaDia, unMes, unAnio)
 		self.artistas(unosArtistas)
 		self.capacidad(unaCapacidad)
 	}
 	
-	method fecha() = fecha
-	method fecha(unaFecha)
+	method fecha() = fecha 
+	method fecha(unaDia, unMes, unAnio)
 	{
-		fecha = unaFecha
+		fecha.initialize(unaDia, unMes, unAnio)
 	}
 	method artistas() = artistas
 	method artistas(unosArtistas)

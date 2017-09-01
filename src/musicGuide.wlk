@@ -141,7 +141,7 @@ object gibson inherits Guitarra(15)
 
 //Presentaciones
 
-object lunaPark inherits Presentacion("20/04/2017",[joaquin,lucia,luisAlberto],9290)
+object lunaPark inherits Presentacion(20,04,2017,[joaquin,lucia,luisAlberto],9290)
 {
 	method antesDeSept(unaFecha)
 	{
@@ -150,26 +150,15 @@ object lunaPark inherits Presentacion("20/04/2017",[joaquin,lucia,luisAlberto],9
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
 }
 
-object laTrastienda inherits Presentacion("15/11/2017",[joaquin,lucia,luisAlberto],400)
+object laTrastienda inherits Presentacion(02,09,2017,[joaquin,lucia,luisAlberto],400)
 {
 	const antesDeSept = false
 	var sabado = false
 	method antesDeSept() = antesDeSept
-
-	method queCapacidad()
-	{
-		if (sabado)
-		{
-			return 700
-		}
-		else
-		{
-			return 400
-		}
-	}
-	method esSabado()
-	{
-		sabado = true
-	}
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
+	method esSabado() = (self.fecha().dayOfWeek() ==6)
+	method queCapacidad() = if(self.esSabado()) 700 else 400
 }
+
+
+
