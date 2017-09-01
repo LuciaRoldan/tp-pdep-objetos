@@ -11,9 +11,9 @@ class Presentacion
 	constructor()
 	{
 	}
-	constructor(unaDia, unMes, unAnio,unosArtistas,unaCapacidad)
+	constructor(unDia,unMes,unAno,unosArtistas,unaCapacidad)
 	{
-		self.fecha(unaDia, unMes, unAnio)
+		fecha.initialize(unDia,unMes,unAno)
 		self.artistas(unosArtistas)
 		self.capacidad(unaCapacidad)
 	}
