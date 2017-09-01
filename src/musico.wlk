@@ -10,51 +10,75 @@ class Musico {
 	{
 		grupo = grupete
 	}
-	
 	method habilidad() = habilidad
-	//method habilidad(unaHabilidad)
-	//{
-	//	habilidad = unaHabilidad
-	//}
-	
+	method habilidad(unaHabilidad)
+	{
+		habilidad = unaHabilidad
+	}
 	method cheque() = cheque
 	method cheque(unaPlata)
 	{
 		cheque = unaPlata
-	}
-	
+	}	
 	method agrupate(grupoNuevo)
-	
+	{
+		self.grupo(grupoNuevo)
+	}
 	method dejaGrupo()
-	
-	method interpretaBien(cancion)
-		
+	{
+		self.grupo("Solista")
+	}
+	method interpretaBien(cancion)	
 	method cobra(presentacion)
-	
-
+	method esSolista() = self.grupo() == "Solista"
 }
 
-object joaquin inherits Musico
+class MusicoDeGrupo inherits Musico
 {
+	var numeroMagico
 	
-	override method agrupate(grupoNuevo)
+	constructor (unGrupo, unaHabilidad, unNumeroMagico)
 	{
-		grupo = grupoNuevo
-		habilidad = 25
+		self.grupo(unGrupo)
+		self.habilidad(unaHabilidad)
+		self.numeroMagico(unNumeroMagico)
 	}
 	
-	override method dejaGrupo()
+	method numeroMagico() = numeroMagico
+	method numeroMagico(nuevoNumero) 
 	{
-		grupo = "Solista"
-		habilidad = 20
+		numeroMagico = nuevoNumero
 	}
-	
-	override method interpretaBien(cancion) = (cancion.duracion() > 300)
-	
-	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self)
-	
-	override method cobra(presentacion)
+	override method habilidad() = if(self.esSolista()) habilidad else (habilidad + numeroMagico)
+}
 
+class MusicoPopular inherits Musico
+{
+	var palabraMagica
+	
+	constructor(unGrupo, unaHabilidad, unaPalabraMagica)
+	{
+		self.grupo(unGrupo)
+		self.habilidad(unaHabilidad)
+		self.palabraMagica(unaPalabraMagica)
+	}
+	
+	method palabraMagica() = palabraMagica
+	method palabraMagica(nuevaPalabra) 
+	{
+		palabraMagica = nuevaPalabra
+	}
+	override method interpretaBien(cancion)
+	{
+		cancion.letra().contains(palabraMagica)
+	}
+}
+
+object joaquin inherits MusicoDeGrupo("Pimpinela",20,5)
+{
+	override method interpretaBien(cancion) = (cancion.duracion() > 300)
+	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self)
+	override method cobra(presentacion)
 	{
 		if ( self.sosUnicoArtista(presentacion))
 		{
@@ -66,30 +90,15 @@ object joaquin inherits Musico
 		}
 		return cheque
 	}
-	
 }
 
-object lucia inherits Musico
+object lucia inherits MusicoPopular("Pimpinela",70,"familia")
 {
 	
-	override method agrupate(grupoNuevo)
-	{
-		grupo = grupoNuevo
-		habilidad = 50
-	}
-	
-	override method dejaGrupo()
-	{
-		grupo = "Solista"
-		habilidad = 70
-	}
-	
-	override method interpretaBien(cancion) = cancion.letra().contains("familia")
-	
+	override method habilidad() = if(self.esSolista()) habilidad else (habilidad -20)
+	//override method interpretaBien(cancion) = cancion.letra().contains("familia")
 	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
-	
 	override method cobra(presentacion)
-
 	{
 		if (self.lugarConcurrido(presentacion))
 		{
@@ -106,18 +115,10 @@ object lucia inherits Musico
 object luisAlberto inherits Musico
 {
 	
-	override method agrupate(grupoNuevo)
-	{
-	}
-	
-	override method dejaGrupo()
-	{
-	}
-	
-	method habilidad(guitarra)
+	method elegiTuGuitarra(guitarra)
 	{
 		
-		return (8 * guitarra.valor()).min(100)
+		habilidad = (8 * guitarra.valor()).min(100)
 	}
 	
 	override method interpretaBien(cancion) = true

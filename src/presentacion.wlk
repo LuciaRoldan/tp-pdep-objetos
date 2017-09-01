@@ -33,6 +33,7 @@ class Presentacion
 	{
 		capacidad = unaCapacidad
 	}
+	method esAntesDeSeptiembre() = (self.fecha().month()<9)
 }
 
 object lunaPark inherits Presentacion(20,04,2017,[joaquin,lucia,luisAlberto],9290)
@@ -42,9 +43,6 @@ object lunaPark inherits Presentacion(20,04,2017,[joaquin,lucia,luisAlberto],929
 
 object laTrastienda inherits Presentacion(02,09,2017,[joaquin,lucia,luisAlberto],400)
 {
-	var sabado = false
-	
-	method antesDeSept() = antesDeSept
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
 	method esSabado() = (self.fecha().dayOfWeek() ==6)
 	method queCapacidad() = if(self.esSabado()) 700 else 400
