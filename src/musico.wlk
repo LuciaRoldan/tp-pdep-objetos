@@ -96,7 +96,6 @@ object lucia inherits MusicoPopular("Pimpinela",70,"familia")
 {
 	
 	override method habilidad() = if(self.esSolista()) habilidad else (habilidad -20)
-	//override method interpretaBien(cancion) = cancion.letra().contains("familia")
 	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
 	override method cobra(presentacion)
 	{
@@ -142,3 +141,20 @@ object luisAlberto inherits Musico
 	
 }
 
+object kike inherits MusicoDeGrupo("Solista",60,20)
+{
+	override method interpretaBien(cancion)
+	{
+	}
+	override method cobra(presentacion)
+	{
+	}
+}
+
+object soledad inherits MusicoPopular("Solista",55,"amor")
+{
+	
+	override method cobra(presentacion)
+	{
+	}
+}
