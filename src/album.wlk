@@ -42,6 +42,7 @@ class Album {
 		unidadesVendidas = unidades
 	}
 	method esAlbumMinimalista() = self.temas().flatten().all({song => song.sosCorta()})
+	method queCancionContiene(palabra) = self.temas().flatten().filter({song => song.letra().contains(palabra)})
 }
 	
 object especialLaFamilia inherits Album([laFamilia],17,06,1992,100.000,89.000)

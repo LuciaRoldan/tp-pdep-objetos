@@ -38,7 +38,11 @@ class Musico {
 	method esSolista() = self.grupo() == "Solista"
 	method edito() = albumes
 	method agregaAlbum(unAlbum) = self.edito().add(unAlbum)
-	method sosMinimalista() = self.edito().all({song => song.esAlbumMinimalista()})
+	method sosMinimalista() = self.edito().all({album => album.esAlbumMinimalista()})
+	method queCancionesTuyasContienen(palabraBuscada)
+	{
+		self.edito().forEach({album => album.queCancionContiene(palabraBuscada)})
+	}
 }
 
 class MusicoDeGrupo inherits Musico
