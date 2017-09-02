@@ -9,6 +9,7 @@ class Musico {
 	var cheque
 	var grupo = "Solista"
 	const albumes = []
+	const canciones = []
 	
 	method grupo() = grupo
 	method grupo(grupete)
@@ -36,13 +37,18 @@ class Musico {
 	method interpretaBien(cancion)	
 	method cobra(presentacion)
 	method esSolista() = self.grupo() == "Solista"
-	method edito() = albumes
-	method agregaAlbum(unAlbum) = self.edito().add(unAlbum)
-	method sosMinimalista() = self.edito().all({album => album.esAlbumMinimalista()})
-	method queCancionesTuyasContienen(palabraBuscada)
+	method albumes() = albumes
+	method canciones() = canciones
+	method agregaAlbum(unAlbum)
 	{
-		self.edito().forEach({album => album.queCancionContiene(palabraBuscada)})
+		self.albumes().add(unAlbum)
+		self.canciones().add(unAlbum.temas().flatten())
 	}
+	method sosMinimalista() = self.canciones().flatten().all({song => song.sosCorta()})
+	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().flatten().filter({song => song.letra().contains(palabraBuscada)})
+	method segundos() = self.canciones().flatten().sum({cancion => cancion.duracion()})
+	method tuCancionMasLarga() = self.canciones().flatten().max({cancion => cancion.letra().size()})
+	method laPego() = self.albumes().all({album => album.unidadesVendidas() > (album.unidadesQueSalieronALaVenta()*75/100) })
 }
 
 class MusicoDeGrupo inherits Musico

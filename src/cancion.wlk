@@ -49,6 +49,6 @@ object almaDeDiamante inherits Cancion(216,"Ven a mi con tu dulce luz alma de di
 {	
 }
 
-object crisantemo inherits Cancion(175,"Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo")
+object crisantemo inherits Cancion(175,"Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abri... encuentra el camino hacia el cielo")
 {	
 }
