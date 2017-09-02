@@ -1,3 +1,7 @@
+import presentacion.*
+import cancion.*
+import guitarra.*
+import album.*
 
 class Musico {
 
@@ -34,8 +38,7 @@ class Musico {
 	method esSolista() = self.grupo() == "Solista"
 	method edito() = albumes
 	method agregaAlbum(unAlbum) = self.edito().add(unAlbum)
-	
-	
+	method sosMinimalista() = self.edito().all({song => song.esAlbumMinimalista()})
 }
 
 class MusicoDeGrupo inherits Musico
@@ -99,7 +102,6 @@ object joaquin inherits MusicoDeGrupo("Pimpinela",20,5)
 
 object lucia inherits MusicoPopular("Pimpinela",70,"familia")
 {
-	
 	override method habilidad() = if(self.esSolista()) habilidad else (habilidad -20)
 	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
 	override method cobra(presentacion)
@@ -114,7 +116,6 @@ object lucia inherits MusicoPopular("Pimpinela",70,"familia")
 		}
 	}
 }
-
 
 object luisAlberto inherits Musico
 {

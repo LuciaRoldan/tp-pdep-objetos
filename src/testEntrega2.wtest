@@ -15,9 +15,83 @@ describe "Entrega2"
 		
 	}
 	
-	test "es Lucia mala?"
+	test "Saber si la canción “Crisantemo” es corta"
 	{
-		assert.that(true)
+		assert.that(crisantemo.sosCorta())
 	}
 	
+	test "Saber si la canción “Alma de diamante” es corta"
+	{
+		
+	}
+	
+	test "Saber si Soledad es minimalista"
+	{
+		
+	}
+	
+	test "Saber si Luis Alberto es minimalista"
+	{
+		
+	}
+	
+	test "Saber si Joaquín es minimalista"
+	{
+		
+	}
+	
+	test "Saber qué canciones de Luis Alberto tienen la palabra “cielo”"
+	{
+		
+	}
+	
+	test "Saber qué canciones de Luis Alberto tienen la palabra “pujante”"
+	{
+		
+	}
+	
+	test "Saber cuántos segundos dura la obra de Kike"
+	{
+		
+	}
+	
+	test "Saber cuántos segundos dura la obra de Soledad"
+	{
+		
+	}
+	
+	test "Saber cuántos segundos dura la obra de Luis Alberto"
+	{
+		
+	}
+	
+	test "Saber qué canción es más larga del álbum “Para los árboles”"
+	{
+		
+	}
+	
+	test "Saber cuál es la canción más larga del álbum “La Sole”"
+	{
+		
+	}
+	
+	test "Queremos saber cuál es la canción más larga del álbum “Especial La Familia”"
+	{
+		
+	}
+	
+	test "Queremos saber si Luis Alberto la pegó"
+	{
+		
+	}
+	
+	test "Queremos saber si Soledad la pegó"
+	{
+		
+	}
+	
+	test "Queremos saber si Joaquín la pegó"
+	{
+		
+	}
 }

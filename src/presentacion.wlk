@@ -1,4 +1,8 @@
-//Presentaciones
+import musico.*
+import cancion.*
+import guitarra.*
+import album.*
+
 import musicGuide.*
 import musico.*
 

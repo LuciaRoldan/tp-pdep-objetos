@@ -1,3 +1,7 @@
+import musico.*
+import presentacion.*
+import cancion.*
+import guitarra.*
 import cancion.*
 
 class Album {
@@ -14,7 +18,7 @@ class Album {
 		self.unidadesQueSalieronALaVenta(unidSalidas)
 		self.unidadesVendidas(unidVendidas)
 	}
-	
+
 	method titulo() = titulo
 	method titulo(tituloNuevo)
 	{
@@ -37,6 +41,7 @@ class Album {
 	{
 		unidadesVendidas = unidades
 	}
+	method esAlbumMinimalista() = self.temas().flatten().all({song => song.sosCorta()})
 }
 	
 object especialLaFamilia inherits Album([laFamilia],17,06,1992,100.000,89.000)
