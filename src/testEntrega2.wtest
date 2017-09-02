@@ -40,10 +40,10 @@ describe "Entrega2"
 		assert.notThat(joaquin.sosMinimalista())
 	}
 	
-	/*test "Saber qué canciones de Luis Alberto tienen la palabra “cielo”"
+	test "Saber qué canciones de Luis Alberto tienen la palabra “cielo”"
 	{
 		assert.equals(luisAlberto.queCancionesTuyasContienen("cielo"), [crisantemo, almaDeDiamante])
-	}*/
+	}
 	
 	test "Saber qué canciones de Luis Alberto tienen la palabra “pujante”"
 	{
