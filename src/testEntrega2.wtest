@@ -9,10 +9,10 @@ describe "Entrega2"
 {
 	fixture 
 	{
-		joaquin.agregaAlbum([especialLaFamilia])
-		soledad.agregaAlbum([laSole])
-		luisAlberto.agregaAlbum([paraLosArboles,justCrisantemo])
-		
+		joaquin.agregaAlbum(especialLaFamilia)
+		soledad.agregaAlbum(laSole)
+		luisAlberto.agregaAlbum(paraLosArboles)
+		luisAlberto.agregaAlbum(justCrisantemo)
 	}
 	
 	test "Saber si la canción “Crisantemo” es corta"
@@ -22,76 +22,76 @@ describe "Entrega2"
 	
 	test "Saber si la canción “Alma de diamante” es corta"
 	{
-		
+		assert.notThat(almaDeDiamante.sosCorta())
 	}
 	
 	test "Saber si Soledad es minimalista"
 	{
-		
+		assert.that(soledad.sosMinimalista())
 	}
 	
 	test "Saber si Luis Alberto es minimalista"
 	{
-		
+		assert.notThat(luisAlberto.sosMinimalista())
 	}
 	
 	test "Saber si Joaquín es minimalista"
 	{
-		
+		assert.notThat(joaquin.sosMinimalista())
 	}
 	
-	test "Saber qué canciones de Luis Alberto tienen la palabra “cielo”"
+	/*test "Saber qué canciones de Luis Alberto tienen la palabra “cielo”"
 	{
-		
-	}
+		assert.equals(luisAlberto.queCancionesTuyasContienen("cielo"), [crisantemo, almaDeDiamante])
+	}*/
 	
 	test "Saber qué canciones de Luis Alberto tienen la palabra “pujante”"
 	{
-		
+		assert.equals(luisAlberto.queCancionesTuyasContienen("pujante"), [])
 	}
 	
 	test "Saber cuántos segundos dura la obra de Kike"
 	{
-		
+		assert.equals(kike.segundos(),0)
 	}
 	
 	test "Saber cuántos segundos dura la obra de Soledad"
 	{
-		
+		assert.equals(soledad.segundos(),299)
 	}
 	
 	test "Saber cuántos segundos dura la obra de Luis Alberto"
 	{
-		
+		assert.equals(luisAlberto.segundos(),703)
 	}
 	
 	test "Saber qué canción es más larga del álbum “Para los árboles”"
 	{
-		
+		assert.equals(paraLosArboles.tuCancionMasLarga(), almaDeDiamante)
 	}
 	
 	test "Saber cuál es la canción más larga del álbum “La Sole”"
 	{
-		
+		assert.equals(laSole.tuCancionMasLarga(), eres)
 	}
 	
 	test "Queremos saber cuál es la canción más larga del álbum “Especial La Familia”"
 	{
-		
+		assert.equals(especialLaFamilia.tuCancionMasLarga(), laFamilia)
 	}
 	
 	test "Queremos saber si Luis Alberto la pegó"
 	{
-		
+		assert.that(luisAlberto.laPego())
 	}
 	
 	test "Queremos saber si Soledad la pegó"
 	{
-		
+		assert.notThat(soledad.laPego())
 	}
 	
 	test "Queremos saber si Joaquín la pegó"
 	{
-		
+		assert.that(joaquin.laPego())
 	}
 }

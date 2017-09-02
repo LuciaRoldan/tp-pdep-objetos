@@ -41,7 +41,7 @@ class Album {
 	{
 		unidadesVendidas = unidades
 	}
-
+	method tuCancionMasLarga() = self.temas().flatten().max({cancion => cancion.letra().size()})
 }
 	
 object especialLaFamilia inherits Album([laFamilia],17,06,1992,100.000,89.000)

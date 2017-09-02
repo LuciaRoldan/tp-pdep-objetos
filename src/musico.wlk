@@ -47,7 +47,6 @@ class Musico {
 	method sosMinimalista() = self.canciones().flatten().all({song => song.sosCorta()})
 	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().flatten().filter({song => song.letra().contains(palabraBuscada)})
 	method segundos() = self.canciones().flatten().sum({cancion => cancion.duracion()})
-	method tuCancionMasLarga() = self.canciones().flatten().max({cancion => cancion.letra().size()})
 	method laPego() = self.albumes().all({album => album.unidadesVendidas() > (album.unidadesQueSalieronALaVenta()*75/100) })
 }
 
