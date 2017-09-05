@@ -1,35 +1,27 @@
-import musico.*
-import presentacion.*
-import cancion.*
-import guitarra.*
-import cancion.*
 
 class Album {
-	var titulo
+	const titulo
 	const temas = []
 	var fechaDeLanzamiento = new Date()
 	var unidadesQueSalieronALaVenta
 	var unidadesVendidas
 	
-	constructor (unosTemas,unaDia, unMes, unAnio,unidSalidas,unidVendidas)
+	constructor (unTitulo,unosTemas,unaFecha,unidSalidas,unidVendidas)
 	{
-		self.agregaTema(unosTemas)
-		self.fechaDeLanzamiento(unaDia, unMes, unAnio)
+		titulo = unTitulo
+		self.agregarTemas(unosTemas)
+		self.fechaDeLanzamiento(unaFecha)
 		self.unidadesQueSalieronALaVenta(unidSalidas)
 		self.unidadesVendidas(unidVendidas)
 	}
 
 	method titulo() = titulo
-	method titulo(tituloNuevo)
-	{
-		titulo = tituloNuevo
-	}
 	method temas() = temas
-	method agregaTema(unTema) = self.temas().add(unTema)
+	method agregarTemas(unosTemas) = self.temas().addAll(unosTemas)
 	method fechaDeLanzamiento() = fechaDeLanzamiento 
-	method fechaDeLanzamiento(unaDia, unMes, unAnio)
+	method fechaDeLanzamiento(unaFecha)
 	{
-		fechaDeLanzamiento.initialize(unaDia, unMes, unAnio)
+		fechaDeLanzamiento = unaFecha
 	}	
 	method unidadesQueSalieronALaVenta() = unidadesQueSalieronALaVenta
 	method unidadesQueSalieronALaVenta(unidades)
@@ -41,21 +33,6 @@ class Album {
 	{
 		unidadesVendidas = unidades
 	}
-	method tuCancionMasLarga() = self.temas().flatten().max({cancion => cancion.letra().size()})
+	method tuCancionMasLarga() = self.temas().max({cancion => cancion.extencion()})
 }
 	
-object especialLaFamilia inherits Album([laFamilia],17,06,1992,100.000,89.000)
-{
-}
-
-object laSole inherits Album([eres,corazonAmericano],04,02,2005,200.000,130.000)
-{
-}
-
-object paraLosArboles inherits Album([cisne,almaDeDiamante],31,03,2003,50.000,49.000)
-{
-}	
-
-object justCrisantemo inherits Album([crisantemo],05,12,2007,28.000,27.500)
-{
-}

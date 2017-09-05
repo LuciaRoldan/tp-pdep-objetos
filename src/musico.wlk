@@ -1,7 +1,3 @@
-import presentacion.*
-import cancion.*
-import guitarra.*
-import album.*
 
 class Musico {
 
