@@ -2,7 +2,7 @@
 class Presentacion
 {
 	var fecha = new Date()
-	var artistas
+	var artistas 
 	var capacidad
 	
 	constructor()
@@ -30,5 +30,14 @@ class Presentacion
 	{
 		capacidad = unaCapacidad
 	}
-	method esAntesDeSeptiembre() = (self.fecha().month()<9)
+	method costo() = artistas.sum({artista =>artista.cobra(self)})
+	
+	method sosUnicoArtista(artista) = self.artistas() == [artista]
+	
+}
+
+class LaTrastienda inherits Presentacion
+{
+	method esSabado() = (self.fecha().dayOfWeek() ==6)
+	override method capacidad() = if(self.esSabado()) 700 else 400
 }

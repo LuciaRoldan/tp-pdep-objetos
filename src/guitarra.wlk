@@ -1,30 +1,20 @@
 
 object gibson
 {	
-	var valor = 15
+	var sana = true
 	
-	method valor() = valor
-	method valor(unValor)
-	{
-		valor = unValor
-	}
+	method valor() = if(sana) 15 else 5
 	method estasRota()
 	{
-		valor = 5
+		sana = false
 	}
 	method arreglate()
 	{
-		valor = 15
+		sana = false
 	}
 }
 
 object fender
 {
-	var valor = 10
-	
-	method valor() = valor
-	method valor(unValor)
-	{
-		valor = unValor
-	}
+	method valor() = 10
 }

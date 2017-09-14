@@ -1,11 +1,16 @@
+import presentacion.*
+import cancion.*
+import guitarra.*
+import musico.*
+import album.*
+
 
 class Musico {
 
-	var habilidad = 00
+	var habilidad
 	var cheque
-	var grupo = "Solista"
+	var grupo
 	const albumes = []
-	const canciones = []
 	
 	method grupo() = grupo
 	method grupo(grupete)
@@ -24,26 +29,30 @@ class Musico {
 	}	
 	method agrupate(grupoNuevo)
 	{
-		self.grupo(grupoNuevo)
+		self.grupo(true)
 	}
 	method dejaGrupo()
 	{
-		self.grupo("Solista")
+		self.grupo(false)
 	}
 	method interpretaBien(cancion)	
 	method cobra(presentacion)
-	method esSolista() = self.grupo() == "Solista"
+	method esSolista() = self.grupo().negate()
 	method albumes() = albumes
-	method canciones() = canciones
 	method agregaAlbum(unAlbum)
 	{
 		self.albumes().add(unAlbum)
-		self.canciones().add(unAlbum.temas().flatten())
 	}
-	method sosMinimalista() = self.canciones().flatten().all({song => song.sosCorta()})
-	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().flatten().filter({song => song.letra().contains(palabraBuscada)})
-	method segundos() = self.canciones().flatten().sum({cancion => cancion.duracion()})
-	method laPego() = self.albumes().all({album => album.unidadesVendidas() > (album.unidadesQueSalieronALaVenta()*75/100) })
+	method canciones()
+	{
+		const canciones = []
+		self.albumes().forEach({album => canciones.addAll(album.temas())})
+		return canciones  
+	}
+	method sosMinimalista() = self.canciones().all({song => song.sosCorta()})
+	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().filter({song => song.contenes(palabraBuscada)}).asSet()
+	method cuantoDuraTuObra() = self.canciones().sum({cancion => cancion.duracion()})
+	method laPego() = self.albumes().all({album => album.tuvisteBuenasVentas()})
 }
 
 class MusicoDeGrupo inherits Musico
@@ -63,6 +72,21 @@ class MusicoDeGrupo inherits Musico
 		numeroMagico = nuevoNumero
 	}
 	override method habilidad() = if(self.esSolista()) habilidad else (habilidad + numeroMagico)
+	
+	override method interpretaBien(cancion) = (cancion.duracion() > 300)
+	
+	override method cobra(presentacion)
+	{
+		if ( presentacion.sosUnicoArtista(self))
+		{
+			cheque = 100
+		}
+		else
+		{
+			cheque = 50
+		}
+		return cheque
+	}
 }
 
 class MusicoPopular inherits Musico
@@ -76,6 +100,7 @@ class MusicoPopular inherits Musico
 		self.palabraMagica(unaPalabraMagica)
 	}
 	
+	override method habilidad() = if(self.esSolista()) habilidad else (habilidad -20)
 	method palabraMagica() = palabraMagica
 	method palabraMagica(nuevaPalabra) 
 	{
@@ -85,29 +110,6 @@ class MusicoPopular inherits Musico
 	{
 		return cancion.letra().contains(palabraMagica)
 	}
-}
-
-object joaquin inherits MusicoDeGrupo("Pimpinela",20,5)
-{
-	override method interpretaBien(cancion) = (cancion.duracion() > 300)
-	method sosUnicoArtista(presentacion) = presentacion.artistas().size() == 1 and presentacion.artistas().contains(self)
-	override method cobra(presentacion)
-	{
-		if ( self.sosUnicoArtista(presentacion))
-		{
-			cheque = 100
-		}
-		else
-		{
-			cheque = 50
-		}
-		return cheque
-	}
-}
-
-object lucia inherits MusicoPopular("Pimpinela",70,"familia")
-{
-	override method habilidad() = if(self.esSolista()) habilidad else (habilidad -20)
 	method lugarConcurrido(lugar) = lugar.capacidad() > 5000
 	override method cobra(presentacion)
 	{
@@ -122,6 +124,7 @@ object lucia inherits MusicoPopular("Pimpinela",70,"familia")
 	}
 }
 
+
 object luisAlberto inherits Musico
 {
 	
@@ -133,39 +136,6 @@ object luisAlberto inherits Musico
 	
 	override method interpretaBien(cancion) = true
 	
-	override method cobra(presentacion)
-	{
-		if (presentacion.esAntesDeSeptiembre())
-		{
-			return 1000
-		}
-		else
-		{
-			return 1200
-		}
-	}
-	
-	method fechaPresentacion(presentacion)
-	{
-		return presentacion.fecha()
-	}
+	override method cobra(presentacion) = if (presentacion.fecha() < new Date(1,9,2017)) 1000 else 1200
 	
 }
-
-object kike inherits MusicoDeGrupo("Solista",60,20) 
-{ 
-  override method interpretaBien(cancion) 
-  { 
-  } 
-  override method cobra(presentacion) 
-  { 
-  } 
-} 
- 
-object soledad inherits MusicoPopular("Solista",55,"amor") 
-{ 
-   
-  override method cobra(presentacion) 
-  { 
-  	}
-  	}

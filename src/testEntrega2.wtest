@@ -6,6 +6,10 @@ import album.*
 
 describe "Entrega2" 
 {
+	const joaquin
+	const kike
+	const soledad
+	
 	const cisne
 	const laFamilia
 	
@@ -20,11 +24,6 @@ describe "Entrega2"
 	
 	fixture 
 	{
-		joaquin.agregaAlbum(especialLaFamilia)
-		soledad.agregaAlbum(laSole)
-		luisAlberto.agregaAlbum(paraLosArboles)
-		luisAlberto.agregaAlbum(justCrisantemo)
-		
 		cisne = new Cancion("cisne",312,"Hoy el viento se abrio quedo vacio el aire una vez mas y el manantial broto y nadie esta aqui y puedo ver que solo estallan las hojas al brillar")
 		laFamilia = new Cancion("laFamilia",264,"Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		
@@ -43,7 +42,16 @@ describe "Entrega2"
 		paraLosArboles = new Album("paraLosArboles",[cisne,almaDeDiamante],new Date(31,03,2003),50.000,49.000)
 
 		justCrisantemo = new Album("justCrisantemo",[crisantemo],new Date(05,12,2007),28.000,27.500)
-
+		
+		kike = new MusicoDeGrupo("Solista",60,20) 
+		soledad = new MusicoPopular("Solista",55,"amor") 
+		joaquin = new MusicoDeGrupo("Pimpinela",20,5)
+		
+		joaquin.agregaAlbum(especialLaFamilia)
+		soledad.agregaAlbum(laSole)
+		luisAlberto.agregaAlbum(paraLosArboles)
+		luisAlberto.agregaAlbum(justCrisantemo)
+		
 		
 	}
 	
@@ -74,27 +82,27 @@ describe "Entrega2"
 	
 	test "Saber que canciones de Luis Alberto tienen la palabra cielo"
 	{
-		assert.equals(luisAlberto.queCancionesTuyasContienen("cielo"), [crisantemo, almaDeDiamante])
+		assert.equals(luisAlberto.queCancionesTuyasContienen("cielo"), #{crisantemo, almaDeDiamante})
 	}
 	
 	test "Saber que canciones de Luis Alberto tienen la palabra pujante"
 	{
-		assert.equals(luisAlberto.queCancionesTuyasContienen("pujante"), [])
+		assert.equals(luisAlberto.queCancionesTuyasContienen("pujante"), #{})
 	}
 	
 	test "Saber cuantos segundos dura la obra de Kike"
 	{
-		assert.equals(kike.segundos(),0)
+		assert.equals(kike.cuantoDuraTuObra(),0)
 	}
 	
 	test "Saber cuantos segundos dura la obra de Soledad"
 	{
-		assert.equals(soledad.segundos(),299)
+		assert.equals(soledad.cuantoDuraTuObra(),299)
 	}
 	
 	test "Saber cuantos segundos dura la obra de Luis Alberto"
 	{
-		assert.equals(luisAlberto.segundos(),703)
+		assert.equals(luisAlberto.cuantoDuraTuObra(),703)
 	}
 	
 	test "Saber que cancion es mas larga del album Para los arboles"

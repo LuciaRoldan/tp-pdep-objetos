@@ -34,5 +34,6 @@ class Album {
 		unidadesVendidas = unidades
 	}
 	method tuCancionMasLarga() = self.temas().max({cancion => cancion.extencion()})
+	method tuvisteBuenasVentas() = self.unidadesVendidas() > (self.unidadesQueSalieronALaVenta()*(0.75)) 
 }
 	
