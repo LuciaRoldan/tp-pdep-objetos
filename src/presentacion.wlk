@@ -31,7 +31,7 @@ class Presentacion
 		capacidad = unaCapacidad
 	}
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
-	
+	method sosLugarConcurrido() = self.capacidad() > 5000
 	method sosUnicoArtista(artista) = self.artistas() == [artista]
 	
 }

@@ -26,52 +26,51 @@ describe "Entrega1"
 		
 	}
 	
-	test "Joaquin canta en el grupo Pimpinela. Queremos conocer su habilidad" 
+	test "Si Joaquin canta en el grupo Pimpinela, su habilidad es 25" 
 	{
 		joaquin.agrupate("pimpinela")
 		assert.equals(joaquin.habilidad(),25)
 	}
 
-	test "Joaquin canta en el grupo Pimpinela, y decide lanzar su carrera solista (deja el grupo). Queremos conocer su habilidad."
+	test "Si Joaquin canta en el grupo Pimpinela, y decide lanzar su carrera solista (deja el grupo), su habilidad es 20"
 	{
 		joaquin.dejaGrupo()
 		assert.equals(joaquin.habilidad(),20)
 	}
 
-	test "Lucia canta en el grupo Pimpinela. Queremos saber su habilidad."
+	test "Si Lucia canta en el grupo Pimpinela, su habilidad es 50"
 	{
 		lucia.agrupate("pimpinela")
 		assert.equals(lucia.habilidad(),50)
 	}
 
-	test "Lucia canta en el grupo Pimpinela, y lanza su carrera solista (deja el grupo). Queremos conocer su habilidad."
+	test "Si Lucia canta en el grupo Pimpinela, y lanza su carrera solista (deja el grupo), su habilidad es 70"
 	{
 		lucia.dejaGrupo()
 		assert.equals(lucia.habilidad(),70)
 	}
 
-	test "Luis Alberto toca con la Fender. Queremos saber su habilidad"
+	test "Si Luis Alberto toca con la Fender, su habilidad es 80"
 	{
-		luisAlberto.tuGuitarraEs(fender)
+		luisAlberto.guitarra(fender)
 		assert.equals(luisAlberto.habilidad(),80)
 	}
 
-	test "Luis Alberto toca ahora con la Gibson sana. Queremos saber su habilidad."
+	test "Si Luis Alberto toca con la Gibson sana, su habilidad es 100"
 	{
-		luisAlberto.tuGuitarraEs(gibson)
+		luisAlberto.guitarra(gibson)
 		assert.equals(luisAlberto.habilidad(),100)
 	}
 
-	test "Alguien trata mal a la Gibson y ahora no esta sana.
-	Luis Alberto toca con la Gibson. Queremos saber su habilidad."
+	test "Si Luis Alberto toca con la Gibson rota, su habilidad es 40"
 	{
 		gibson.estasRota()
-		luisAlberto.tuGuitarraEs(gibson)
+		luisAlberto.guitarra(gibson)
 		assert.equals(luisAlberto.habilidad(),40)
 	}
 
 
-	test "Queremos saber si Joaquin interpreta bien la cancion 'La Familia'"
+	test "Joaquin no interpreta bien la cancion 'La Familia'"
 
 	{
 		assert.that(joaquin.interpretaBien(laFamilia).negate())
@@ -79,85 +78,84 @@ describe "Entrega1"
 
 
 
-	test "Queremos saber si Joaquin interpreta bien la cancion 'Cisne'"
+	test "Joaquin interpreta bien la cancion 'Cisne'"
 	{
 		assert.that(joaquin.interpretaBien(cisne))
 	}
 
 
-	test "Queremos saber si Lucía interpreta bien la canción 'La Familia'"
+	test "Lucia interpreta bien la cancion 'La Familia'"
 	{
 		assert.that(lucia.interpretaBien(laFamilia))
 	}
 
 
-	test "Queremos saber si Lucia interpreta bien la cancion 'Cisne'"
+	test "Lucia no interpreta bien la cancion 'Cisne'"
 	{
 		assert.that(lucia.interpretaBien(cisne).negate())
 	}
 
 
-	test "Queremos saber si Luis Alberto interpreta bien la cancion 'La Familia'"
+	test "Luis Alberto interpreta bien la cancion 'La Familia'"
 	{
 		assert.that(luisAlberto.interpretaBien(laFamilia))
 	}
 
 
-	test "Queremos saber si Luis Alberto interpreta bien la canción 'Cisne'"
+	test "Luis Alberto interpreta bien la cancion 'Cisne'"
 	{
 		assert.that(luisAlberto.interpretaBien(cisne))
 	}
 
-	test "Queremos saber cuanto cobra Joaquin por la presentacion del Luna Park"
+	test "Joaquin cobra 50 por la presentacion del Luna Park"
 	{
 		assert.equals(joaquin.cobra(lunaPark),50)
 	}
 
-	test "Modificar la presentacion de la Trastienda para que solo actue Joaquin.
-	Queremos saber cuanto cobra Joaquin por la presentacion de la Trastienda del 15/11/2017"
+	test "Joaquin cobra 100 por la presentacion de la Trastienda del 15/11/2017, si es el unico artista"
 	{
 		laTrastienda.artistas([joaquin])
 		assert.equals(joaquin.cobra(laTrastienda),100)
 	}
 
-	test "Queremos saber la capacidad de La Trastienda para el 05 de agosto del 2017"
+	test "La capacidad de La Trastienda para el 05 de agosto del 2017 es de 700"
 	{
 		laTrastienda.fecha(new Date(05,08,2017))
 		assert.equals(laTrastienda.capacidad(),700)
 	}
 
-	test "Queremos saber la capacidad de La Trastienda para el 08 de agosto del 2017"
+	test "La capacidad de La Trastienda para el 08 de agosto del 2017 es de 400"
 	{
 		laTrastienda.fecha(new Date(08,08,2017))
 		assert.equals(laTrastienda.capacidad(),400)
 	}
 
-	test "Queremos saber cuanto cobra Lucia por la presentacion del Luna Park"
+	test "Lucia cobra 500 por la presentacion del Luna Park"
 	{
 		assert.equals(lucia.cobra(lunaPark),500)
 	}
 
-	test "Queremos saber cuanto cobra Lucia por la presentacion de la Trastienda"
+	test "Lucia cobra 400 por la presentacion de la Trastienda"
 	{
 		assert.equals(lucia.cobra(laTrastienda),400)
 	}
 
-	test "Queremos saber cuanto cobra Luis Alberto por la presentacion del Luna Park"
+	test "Luis Alberto cobra 1000 por la presentacion del Luna Park"
 	{
 		assert.equals(luisAlberto.cobra(lunaPark),1000)
 	}
 
-	test "Queremos saber cuanto cobra Luis Alberto por la presentacion de La Trastienda"
+	test "Luis Alberto cobra 1200 por la presentacion de La Trastienda"
 	{
 		assert.equals(luisAlberto.cobra(laTrastienda),1200)
 	}
 
-	test "Queremos saber el costo de la presentacion del Luna Park"
+	test "El costo de la presentacion del Luna Park es 1550"
 	{
 		assert.equals(lunaPark.costo(),1550)
 	}
 
-	test "Queremos saber el costo de la presentacion de la Trastienda el 15/11/2017"
+	test "El costo de la presentacion de la Trastienda el 15/11/2017 es 1650"
 	{
 		assert.equals(laTrastienda.costo(),1650)
 	}

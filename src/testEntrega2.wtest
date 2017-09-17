@@ -43,9 +43,12 @@ describe "Entrega2"
 
 		justCrisantemo = new Album("justCrisantemo",[crisantemo],new Date(05,12,2007),28.000,27.500)
 		
-		kike = new MusicoDeGrupo("Solista",60,20) 
-		soledad = new MusicoPopular("Solista",55,"amor") 
-		joaquin = new MusicoDeGrupo("Pimpinela",20,5)
+		kike = new Musico()
+		kike.tipoDeMusico(new MusicoDeGrupo(0,60,20))
+		soledad = new Musico()
+		soledad.tipoDeMusico(new MusicoPopular(0,55,"amor"))
+		joaquin = new Musico()
+		joaquin.tipoDeMusico(new MusicoDeGrupo(0,20,5))
 		
 		joaquin.agregaAlbum(especialLaFamilia)
 		soledad.agregaAlbum(laSole)
@@ -55,82 +58,82 @@ describe "Entrega2"
 		
 	}
 	
-	test "Saber si la cancion Crisantemo es corta"
+	test "Crisantemo es corta"
 	{
 		assert.that(crisantemo.sosCorta())
 	}
 	
-	test "Saber si la cancion Alma de diamante es corta"
+	test "Alma de diamante es corta"
 	{
 		assert.notThat(almaDeDiamante.sosCorta())
 	}
 	
-	test "Saber si Soledad es minimalista"
+	test "Soledad es minimalista"
 	{
 		assert.that(soledad.sosMinimalista())
 	}
 	
-	test "Saber si Luis Alberto es minimalista"
+	test "Luis Alberto es minimalista"
 	{
 		assert.notThat(luisAlberto.sosMinimalista())
 	}
 	
-	test "Saber si Joaquin es minimalista"
+	test "Joaquin es minimalista"
 	{
 		assert.notThat(joaquin.sosMinimalista())
 	}
 	
-	test "Saber que canciones de Luis Alberto tienen la palabra cielo"
+	test "Crisantemo y Alma De Diamente son las canciones de Luis Alberto que contienen la palabra 'cielo'"
 	{
 		assert.equals(luisAlberto.queCancionesTuyasContienen("cielo"), #{crisantemo, almaDeDiamante})
 	}
 	
-	test "Saber que canciones de Luis Alberto tienen la palabra pujante"
+	test "Ninguna cancion de Luis Alberto tiene la palabra pujante"
 	{
 		assert.equals(luisAlberto.queCancionesTuyasContienen("pujante"), #{})
 	}
 	
-	test "Saber cuantos segundos dura la obra de Kike"
+	test "La obra de Kike dura 0 segundos"
 	{
 		assert.equals(kike.cuantoDuraTuObra(),0)
 	}
 	
-	test "Saber cuantos segundos dura la obra de Soledad"
+	test "La obra de Soledad dura 299 segundos"
 	{
 		assert.equals(soledad.cuantoDuraTuObra(),299)
 	}
 	
-	test "Saber cuantos segundos dura la obra de Luis Alberto"
+	test "La obra de Luis Alberto dura 703 segundos"
 	{
 		assert.equals(luisAlberto.cuantoDuraTuObra(),703)
 	}
 	
-	test "Saber que cancion es mas larga del album Para los arboles"
+	test "La cancion mas larga del album Para los arboles es Alma de Diamante"
 	{
 		assert.equals(paraLosArboles.tuCancionMasLarga(), almaDeDiamante)
 	}
 	
-	test "Saber cual es la cancion mas larga del album La Sole"
+	test "La cancion mas larga del album La Sole es Eres"
 	{
 		assert.equals(laSole.tuCancionMasLarga(), eres)
 	}
 	
-	test "Queremos saber cual es la cancion mas larga del album Especial La Familia"
+	test "La cancion mas larga del album Especial La Familia es La Familia"
 	{
 		assert.equals(especialLaFamilia.tuCancionMasLarga(), laFamilia)
 	}
 	
-	test "Queremos saber si Luis Alberto la pego"
+	test "Luis Alberto la pego"
 	{
 		assert.that(luisAlberto.laPego())
 	}
 	
-	test "Queremos saber si Soledad la pego"
+	test "Soledad no la pego"
 	{
 		assert.notThat(soledad.laPego())
 	}
 	
-	test "Queremos saber si Joaquin la pego"
+	test "Joaquin la pego"
 	{
 		assert.that(joaquin.laPego())
 	}
