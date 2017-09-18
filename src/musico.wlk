@@ -17,7 +17,7 @@ class Musico
 	}
 	
 	method habilidad() = tipoDeMusico.habilidad()
-	method interpretaBien(cancion) = tipoDeMusico.interpretaBien(cancion)
+	method interpretaBien(cancion) = if (self.habilidad() > 60) true else tipoDeMusico.interpretaBien(cancion)
 	method cobra(presentacion) = tipoDeMusico.cobra(presentacion,self)
 	
 	method tipoDeMusico() = tipoDeMusico
@@ -52,7 +52,7 @@ class Musico
 
 class MusicoDeGrupo
 {
-	var grupo	
+	var grupo = true
 	var numeroMagico
 	const habilidad
 	
@@ -75,7 +75,7 @@ class MusicoPopular
 {
 	const palabraMagica
 	const habilidad
-	var grupo
+	var grupo = false
 	
 	constructor (unaHabilidad, unaPalabraMagica)
 	{
