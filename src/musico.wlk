@@ -10,8 +10,7 @@ class Musico
 	const albumes = []
 	var tipoDeMusico
 	
-	constructor(){}
-	
+	constructor (){}
 	constructor (unTipoDeMusico)
 	{
 		self.tipoDeMusico(unTipoDeMusico)
@@ -34,8 +33,6 @@ class Musico
 	{
 		tipoDeMusico.grupo(false)
 	}
-	
-	method esSolista() = tipoDeMusico.grupo().negate()
 	method albumes() = albumes
 	method agregaAlbum(unAlbum)
 	{
@@ -57,93 +54,42 @@ class MusicoDeGrupo
 {
 	var grupo	
 	var numeroMagico
-	var cheque
-	var habilidad
-	const nombre
-	var unicoArtista 
+	const habilidad
 	
-	constructor (){}
-	
-	constructor (unNombre, unaHabilidad, unNumeroMagico)
+	constructor (unaHabilidad, unNumeroMagico)
 	{
-		nombre = unNombre
-		self.habilidad(unaHabilidad)
-		self.numeroMagico(unNumeroMagico)
+		habilidad = unaHabilidad
+		numeroMagico = unNumeroMagico
 	}
-	method nombre() = nombre
 	method grupo() = grupo
 	method grupo(grupete)
 	{
 		grupo = grupete
 	}
-	method unicoArtista() = unicoArtista
-	method unicoArtista(bool)
-	{
-		unicoArtista = bool
-	}
-	method numeroMagico() = numeroMagico
-	method numeroMagico(nuevoNumero) 
-	{
-		numeroMagico = nuevoNumero
-	}
-	method cheque() = cheque
-	method cheque(unaPlata)
-	{
-		cheque = unaPlata
-	}
-	//method habilidad() = if(self.esSolista()) habilidad else (habilidad + numeroMagico)
 	method habilidad() = if(self.grupo().negate()) habilidad else (habilidad + numeroMagico)
-	method habilidad(unaHabilidad)
-	{
-		habilidad = unaHabilidad
-	}
 	method interpretaBien(cancion) = (cancion.duracion() > 300)
 	method cobra(presentacion,quien) = if (presentacion.sosUnicoArtista(quien)) 100 else 50
 }
 
 class MusicoPopular
 {
-	var palabraMagica
-	var cheque
-	var habilidad
+	const palabraMagica
+	const habilidad
 	var grupo
-	const nombre
 	
-	constructor (){}
-	
-	constructor (unNombre, unaHabilidad, unaPalabraMagica)
+	constructor (unaHabilidad, unaPalabraMagica)
 	{
-		nombre = unNombre
-		self.habilidad(unaHabilidad)
-		self.palabraMagica(unaPalabraMagica)
+		habilidad = unaHabilidad
+		palabraMagica = unaPalabraMagica
 	}
 	
-	method nombre() = nombre
 	method grupo() = grupo
 	method grupo(grupete)
 	{
 		grupo = grupete
 	}
-	
-	method palabraMagica() = palabraMagica
-	method palabraMagica(nuevaPalabra) 
-	{
-		palabraMagica = nuevaPalabra
-	}
-	method cheque() = cheque
-	method cheque(unaPlata)
-	{
-		cheque = unaPlata
-	}
-	method habilidad(unaHabilidad)
-	{
-		habilidad = unaHabilidad
-	}
 	method habilidad() = if(self.grupo().negate()) habilidad else (habilidad -20)
-	method interpretaBien(cancion)
-	{
-		return cancion.letra().contains(palabraMagica)
-	}
+	method interpretaBien(cancion) = cancion.letra().contains(palabraMagica)
 	method cobra(presentacion,quien) = if(presentacion.sosLugarConcurrido()) 500 else 400
 }
 
