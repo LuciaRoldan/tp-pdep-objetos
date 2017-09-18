@@ -7,17 +7,20 @@ import album.*
 
 class Musico 
 {
-	var grupo
 	const albumes = []
 	var tipoDeMusico
 	
 	constructor(){}
 	
-	method grupo() = grupo
-	method grupo(grupete)
+	constructor (unTipoDeMusico)
 	{
-		grupo = grupete
+		self.tipoDeMusico(unTipoDeMusico)
 	}
+	
+	method habilidad() = tipoDeMusico.habilidad()
+	method interpretaBien(cancion) = tipoDeMusico.interpretaBien(cancion)
+	method cobra(presentacion) = tipoDeMusico.cobra(presentacion,self)
+	
 	method tipoDeMusico() = tipoDeMusico
 	method tipoDeMusico(unTipoDeMusico) 
 	{
@@ -25,13 +28,14 @@ class Musico
 	}
 	method agrupate(grupoNuevo)
 	{
-		self.grupo(true)
+		tipoDeMusico.grupo(true)
 	}
 	method dejaGrupo()
 	{
-		self.grupo(false)
+		tipoDeMusico.grupo(false)
 	}
-	method esSolista() = self.grupo().negate()
+	
+	method esSolista() = tipoDeMusico.grupo().negate()
 	method albumes() = albumes
 	method agregaAlbum(unAlbum)
 	{
@@ -51,17 +55,32 @@ class Musico
 
 class MusicoDeGrupo
 {
+	var grupo	
 	var numeroMagico
 	var cheque
 	var habilidad
+	const nombre
+	var unicoArtista 
 	
-	constructor (unCheque, unaHabilidad, unNumeroMagico)
+	constructor (){}
+	
+	constructor (unNombre, unaHabilidad, unNumeroMagico)
 	{
-		self. cheque(unCheque)
+		nombre = unNombre
 		self.habilidad(unaHabilidad)
 		self.numeroMagico(unNumeroMagico)
 	}
-	
+	method nombre() = nombre
+	method grupo() = grupo
+	method grupo(grupete)
+	{
+		grupo = grupete
+	}
+	method unicoArtista() = unicoArtista
+	method unicoArtista(bool)
+	{
+		unicoArtista = bool
+	}
 	method numeroMagico() = numeroMagico
 	method numeroMagico(nuevoNumero) 
 	{
@@ -73,12 +92,13 @@ class MusicoDeGrupo
 		cheque = unaPlata
 	}
 	//method habilidad() = if(self.esSolista()) habilidad else (habilidad + numeroMagico)
+	method habilidad() = if(self.grupo().negate()) habilidad else (habilidad + numeroMagico)
 	method habilidad(unaHabilidad)
 	{
 		habilidad = unaHabilidad
 	}
 	method interpretaBien(cancion) = (cancion.duracion() > 300)
-	method cobra(presentacion) = if ( presentacion.sosUnicoArtista(self)) self.cheque(100) else self.cheque(50)
+	method cobra(presentacion,quien) = if (presentacion.sosUnicoArtista(quien)) 100 else 50
 }
 
 class MusicoPopular
@@ -86,12 +106,23 @@ class MusicoPopular
 	var palabraMagica
 	var cheque
 	var habilidad
+	var grupo
+	const nombre
 	
-	constructor (unCheque, unaHabilidad, unaPalabraMagica)
+	constructor (){}
+	
+	constructor (unNombre, unaHabilidad, unaPalabraMagica)
 	{
-		self. cheque(unCheque)
+		nombre = unNombre
 		self.habilidad(unaHabilidad)
-		self.numeroMagico(unaPalabraMagica)
+		self.palabraMagica(unaPalabraMagica)
+	}
+	
+	method nombre() = nombre
+	method grupo() = grupo
+	method grupo(grupete)
+	{
+		grupo = grupete
 	}
 	
 	method palabraMagica() = palabraMagica
@@ -104,17 +135,16 @@ class MusicoPopular
 	{
 		cheque = unaPlata
 	}
-	method habilidad() = habilidad
 	method habilidad(unaHabilidad)
 	{
 		habilidad = unaHabilidad
 	}
-	//method habilidad() = if(self.esSolista()) habilidad else (habilidad -20)
+	method habilidad() = if(self.grupo().negate()) habilidad else (habilidad -20)
 	method interpretaBien(cancion)
 	{
 		return cancion.letra().contains(palabraMagica)
 	}
-	method cobra(presentacion) = if(presentacion.sosLugarConcurrido()) self.cheque(500) else self.cheque(400)
+	method cobra(presentacion,quien) = if(presentacion.sosLugarConcurrido()) 500 else 400
 }
 
 
@@ -127,8 +157,8 @@ object luisAlberto inherits Musico
 	{
 		guitarra = unaGuitarra
 	}
-	method habilidad() = (8 * self.guitarra().valor()).min(100)
-	method interpretaBien(cancion) = true
-	method cobra(presentacion) = if (presentacion.fecha() < new Date(1,9,2017)) 1000 else 1200
+	override method habilidad() = (8 * self.guitarra().valor()).min(100)
+	override method interpretaBien(cancion) = true
+	override method cobra(presentacion) = if (presentacion.fecha() < new Date(1,9,2017)) 1000 else 1200
 	
 }

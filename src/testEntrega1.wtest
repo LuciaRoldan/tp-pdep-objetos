@@ -18,8 +18,8 @@ describe "Entrega1"
 		cisne = new Cancion("cisne",312,"Hoy el viento se abrio quedo vacio el aire una vez mas y el manantial broto y nadie esta aqui y puedo ver que solo estallan las hojas al brillar")
 		laFamilia = new Cancion("laFamilia",264,"Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		
-		joaquin = new MusicoDeGrupo("Pimpinela",20,5)
-		lucia = new MusicoPopular("Pimpinela",70,"familia")
+		joaquin = new Musico(new MusicoDeGrupo("pimpi",20,5))
+		lucia = new Musico(new MusicoPopular("Pimpinela",70,"familia"))
 		
 		lunaPark = new Presentacion(new Date(20,04,2017),[joaquin,lucia,luisAlberto],9290)
 		laTrastienda = new LaTrastienda(new Date(02,09,2017),[joaquin,lucia,luisAlberto],400)
