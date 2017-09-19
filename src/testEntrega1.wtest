@@ -8,10 +8,11 @@ describe "Entrega1"
 {
 	const cisne
 	const laFamilia
-	const lunaPark
-	const laTrastienda
+	const lunaPark_20_04_2017
+	const laTrastienda_15_11_2017
 	const joaquin
 	const lucia
+	
  
 	fixture
 	{
@@ -21,8 +22,9 @@ describe "Entrega1"
 		joaquin = new Musico(new MusicoDeGrupo(20,5))
 		lucia = new Musico(new MusicoPopular(70,"familia"))
 		
-		lunaPark = new Presentacion(new Date(20,04,2017),[joaquin,lucia,luisAlberto],9290)
-		laTrastienda = new LaTrastienda(new Date(02,09,2017),[joaquin,lucia,luisAlberto],400)
+		lunaPark_20_04_2017 = new PresentacionEnLunaPark(new Date(20,04,2017),[joaquin,lucia,luisAlberto])
+		laTrastienda_15_11_2017 = new PresentacionEnLaTrastienda(new Date(02,09,2017),[joaquin,lucia,luisAlberto])
+		
 		
 	}
 	
@@ -70,9 +72,11 @@ describe "Entrega1"
 	}
 
 
-	test "Joaquin no interpreta bien la cancion 'La Familia'"
+	test "Joaquin interpreta bien la cancion 'La Familia'"
 	{
-		assert.that(joaquin.interpretaBien(laFamilia).negate())
+		const especialLaFamilia = new Album("especialLaFamilia",[laFamilia],new Date(17,06,1992),100.000,89.000)
+		joaquin.agregaAlbum(especialLaFamilia)
+		assert.that(joaquin.interpretaBien(laFamilia))
 	}
 
 
@@ -88,12 +92,16 @@ describe "Entrega1"
 		assert.that(lucia.interpretaBien(laFamilia))
 	}
 
-
-	test "Lucia no interpreta bien la cancion 'Cisne'"
+	test "Lucia interpreta bien la cancion 'Cisne' como solista"
 	{
-		assert.that(lucia.interpretaBien(cisne).negate())
+		assert.that(lucia.interpretaBien(cisne))
 	}
 
+	test "Lucia no interpreta bien la cancion 'Cisne' en grupo"
+	{
+		lucia.agrupate("pimpinela")
+		assert.that(lucia.interpretaBien(cisne).negate())
+	}
 
 	test "Luis Alberto interpreta bien la cancion 'La Familia'"
 	{
@@ -108,55 +116,55 @@ describe "Entrega1"
 
 	test "Joaquin cobra 50 por la presentacion del Luna Park"
 	{
-		assert.equals(joaquin.cobra(lunaPark),50)
+		assert.equals(joaquin.cobra(lunaPark_20_04_2017),50)
 	}
 
 	test "Joaquin cobra 100 por la presentacion de la Trastienda del 15/11/2017, si es el unico artista"
 	{
-		laTrastienda.artistas([joaquin])
-		assert.equals(joaquin.cobra(laTrastienda),100)
+		laTrastienda_15_11_2017.artistas([joaquin])
+		assert.equals(joaquin.cobra(laTrastienda_15_11_2017),100)
 	}
 
 	test "La capacidad de La Trastienda para el 05 de agosto del 2017 es de 700"
 	{
-		laTrastienda.fecha(new Date(05,08,2017))
-		assert.equals(laTrastienda.capacidad(),700)
+		laTrastienda_15_11_2017.fecha(new Date(05,08,2017))
+		assert.equals(laTrastienda_15_11_2017.capacidad(),700)
 	}
 
 	test "La capacidad de La Trastienda para el 08 de agosto del 2017 es de 400"
 	{
-		laTrastienda.fecha(new Date(08,08,2017))
-		assert.equals(laTrastienda.capacidad(),400)
+		laTrastienda_15_11_2017.fecha(new Date(08,08,2017))
+		assert.equals(laTrastienda_15_11_2017.capacidad(),400)
 	}
 
 	test "Lucia cobra 500 por la presentacion del Luna Park"
 	{
-		assert.equals(lucia.cobra(lunaPark),500)
+		assert.equals(lucia.cobra(lunaPark_20_04_2017),500)
 	}
 
 	test "Lucia cobra 400 por la presentacion de la Trastienda"
 	{
-		assert.equals(lucia.cobra(laTrastienda),400)
+		assert.equals(lucia.cobra(laTrastienda_15_11_2017),400)
 	}
 
 	test "Luis Alberto cobra 1000 por la presentacion del Luna Park"
 	{
-		assert.equals(luisAlberto.cobra(lunaPark),1000)
+		assert.equals(luisAlberto.cobra(lunaPark_20_04_2017),1000)
 	}
 
 	test "Luis Alberto cobra 1200 por la presentacion de La Trastienda"
 	{
-		assert.equals(luisAlberto.cobra(laTrastienda),1200)
+		assert.equals(luisAlberto.cobra(laTrastienda_15_11_2017),1200)
 	}
 
 	test "El costo de la presentacion del Luna Park es 1550"
 	{
-		assert.equals(lunaPark.costo(),1550)
+		assert.equals(lunaPark_20_04_2017.costo(),1550)
 	}
 
 	test "El costo de la presentacion de la Trastienda el 15/11/2017 es 1650"
 	{
-		assert.equals(laTrastienda.costo(),1650)
+		assert.equals(laTrastienda_15_11_2017.costo(),1650)
 	}
 }
 

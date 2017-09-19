@@ -1,20 +1,25 @@
 
+import cancion.*
+
 class Presentacion
 {
 	var fecha = new Date()
-	var artistas 
-	var capacidad
+	var artistas = []
+	var lugar 
 	
 	constructor()
 	{
 	}
-	constructor(unaFecha,unosArtistas,unaCapacidad)
+	constructor(unaFecha,unosArtistas)
 	{
 		self.fecha(unaFecha)
 		self.artistas(unosArtistas)
-		self.capacidad(unaCapacidad)
 	}
-	
+	method lugar() = lugar
+	method lugar(unLugar)
+	{
+		lugar = unLugar
+	}
 	method fecha() = fecha 
 	method fecha(unaFecha)
 	{
@@ -25,19 +30,54 @@ class Presentacion
 	{
 		artistas = unosArtistas
 	}
-	method capacidad() = capacidad
-	method capacidad(unaCapacidad)
-	{
-		capacidad = unaCapacidad
-	}
+	method capacidad()
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
 	method sosLugarConcurrido() = self.capacidad() > 5000
 	method sosUnicoArtista(artista) = self.artistas() == [artista]
+	method agregaArtista(unArtista)
+	{
+		self.artistas().add(unArtista)
+	}
 	
 }
 
-class LaTrastienda inherits Presentacion
+
+class PresentacionEnLunaPark inherits Presentacion
 {
-	method esSabado() = (self.fecha().dayOfWeek() ==6)
+	const capacidad = 9290
+	override method capacidad() = capacidad
+}
+
+class PresentacionEnLaTrastienda inherits Presentacion
+{
+	method esSabado() = (self.fecha().dayOfWeek() == 6)
 	override method capacidad() = if(self.esSabado()) 700 else 400
+}
+
+object pdepalooza inherits PresentacionEnLunaPark(new Date(15,12,2017),[])
+{
+	method verificaArtista(unArtista)
+	{
+		if ( unArtista.habilidad() < 70)
+		{
+			throw new Exception("La habilidad del artista tiene que ser mayor a 70")
+		}
+		if ( unArtista.canciones() == [])
+		{
+			throw new Exception("El artista debe haber compuesto al menos una cancion")
+		}
+		if ( unArtista.interpretaBien(
+			new Cancion("Cancion De Alicia En El Pais",510,"Quien sabe Alicia, este país no estuvo hecho porque sí. Te vas a ir, vas a salir pero te quedas, ¿dónde más vas a ir? Y es que aquí, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabo ese juego que te hacía feliz.")
+									).negate())
+		{
+			throw new Exception("El artista debe saber ejecutar 'Cancion De Alicia En El Pais'")
+		}
+	}
+	override method agregaArtista(unArtista)
+	{
+		self.verificaArtista(unArtista)
+		super(unArtista)
+	}
+	
+	
 }

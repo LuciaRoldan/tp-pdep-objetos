@@ -17,7 +17,7 @@ class Musico
 	}
 	
 	method habilidad() = tipoDeMusico.habilidad()
-	method interpretaBien(cancion) = if (self.habilidad() > 60) true else tipoDeMusico.interpretaBien(cancion)
+	method interpretaBien(cancion) = self.canciones().contains(cancion) || self.habilidad() > 60 || tipoDeMusico.interpretaBien(cancion)
 	method cobra(presentacion) = tipoDeMusico.cobra(presentacion,self)
 	
 	method tipoDeMusico() = tipoDeMusico
@@ -48,13 +48,18 @@ class Musico
 	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().filter({cancion => cancion.contenes(palabraBuscada)}).asSet()
 	method cuantoDuraTuObra() = self.canciones().sum({cancion => cancion.duracion()})
 	method laPego() = self.albumes().all({album => album.tuvisteBuenasVentas()})
+	
+	method habilidad(unaHabilidad)
+	{
+		tipoDeMusico.habilidad(unaHabilidad)
+	}
 }
 
 class MusicoDeGrupo
 {
 	var grupo = true
 	var numeroMagico
-	const habilidad
+	var habilidad
 	
 	constructor (unaHabilidad, unNumeroMagico)
 	{
@@ -67,6 +72,10 @@ class MusicoDeGrupo
 		grupo = grupete
 	}
 	method habilidad() = if(self.grupo().negate()) habilidad else (habilidad + numeroMagico)
+	method habilidad(unaHabilidad)
+	{
+		habilidad = unaHabilidad
+	}
 	method interpretaBien(cancion) = (cancion.duracion() > 300)
 	method cobra(presentacion,quien) = if (presentacion.sosUnicoArtista(quien)) 100 else 50
 }
@@ -74,7 +83,7 @@ class MusicoDeGrupo
 class MusicoPopular
 {
 	const palabraMagica
-	const habilidad
+	var habilidad
 	var grupo = false
 	
 	constructor (unaHabilidad, unaPalabraMagica)
@@ -89,6 +98,10 @@ class MusicoPopular
 		grupo = grupete
 	}
 	method habilidad() = if(self.grupo().negate()) habilidad else (habilidad -20)
+	method habilidad(unaHabilidad)
+	{
+		habilidad = unaHabilidad
+	}
 	method interpretaBien(cancion) = cancion.letra().contains(palabraMagica)
 	method cobra(presentacion,quien) = if(presentacion.sosLugarConcurrido()) 500 else 400
 }
@@ -96,7 +109,7 @@ class MusicoPopular
 
 object luisAlberto inherits Musico
 {
-	var guitarra
+	var guitarra = fender
 	
 	method guitarra() = guitarra
 	method guitarra(unaGuitarra)
