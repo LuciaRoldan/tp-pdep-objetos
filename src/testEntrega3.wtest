@@ -22,9 +22,8 @@ describe "Entrega3"
 	const laSole
 	const paraLosArboles
 	const justCrisantemo
-	
-	
-	//const pdepalooza
+	const remixLaFamilia
+	const mashupAlmaDeCrisantemo
  
 	fixture
 	{
@@ -33,7 +32,7 @@ describe "Entrega3"
 		eres = new Cancion("eres",145,"Eres lo mejor que me paso en la vida, no tengo duda, no habra mas nada despues de ti. Eres lo que le dio brillo al dia a dia, y asi sera por siempre, no cambiara, hasta el final de mis dias")
 		corazonAmericano = new Cancion("corazonAmericano",154,"Canta corazon, canta mas alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazon, como soniamos.")
 		almaDeDiamante = new Cancion("almaDeDiamante",216,"Ven a mi con tu dulce luz alma de diamante. Y aunque el sol se nuble despues sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asi con la humanidad alma de diamante")
-		crisantemo = new Cancion("crisantemo",175,"Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abri... encuentra el camino hacia el cielo")
+		crisantemo = new Cancion("crisantemo",175,"Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo")
 
 		especialLaFamilia = new Album("especialLaFamilia",[laFamilia],new Date(17,06,1992),100.000,89.000)
 		laSole = new Album("laSole",[eres,corazonAmericano],new Date(04,02,2005),200.000,130.000)
@@ -50,10 +49,8 @@ describe "Entrega3"
 		luisAlberto.agregaAlbum(paraLosArboles)
 		luisAlberto.agregaAlbum(justCrisantemo)
 		
-		
-		
-		//pdepalooza = new PresentacionEnLunaPark(new Date(15,12,2017),[])
-		
+		remixLaFamilia = new Remix(laFamilia)
+		mashupAlmaDeCrisantemo = new Mashup(almaDeDiamante, crisantemo)
 	}
 	
 	test "Si buscamos la cancion mas larga segun duracion, del album 'Especial La Familia' encontramos 'La Familia'" 
@@ -74,17 +71,17 @@ describe "Entrega3"
 	
 	test "Si remixamos la cancion 'La Familia', queda de 792 segundos" 
 	{
-		assert.that(true)
+		assert.equals(remixLaFamilia.duracion(),792)
 	}
 	
 	test "Si remixamos la cancion 'La Familia', se le agrega 'mueve tu cuelpo baby' al principio y 'yeah oh yeah' al final" 
 	{
-		assert.that(true)
+		assert.equals(remixLaFamilia.letra(), "Mueve tu cuelpo baby Quiero brindar por mi gente sencilla, por el amor brindo por la familia yeah oh yeah")
 	}
 	
 	test "Si hacemos un mashup de 'Alma De Diamante' y 'Crisantemo' se concatena la letra de 'Alma De Diamante' con la de 'Crisantemo' en ese orden" 
 	{
-		assert.that(true)
+		assert.equals(mashupAlmaDeCrisantemo.letra(), "Ven a mi con tu dulce luz alma de diamante. Y aunque el sol se nuble despues sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asi con la humanidad alma de diamante Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo")
 	}
 	
 	test "Podemos agregar a Luis Alberto al recital de Pdpalooza" 

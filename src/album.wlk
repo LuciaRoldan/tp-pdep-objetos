@@ -1,9 +1,3 @@
-import presentacion.*
-import cancion.*
-import guitarra.*
-import musico.*
-import album.*
-
 
 class Album {
 	const titulo

@@ -29,7 +29,7 @@ describe "Entrega2"
 		eres = new Cancion("eres",145,"Eres lo mejor que me paso en la vida, no tengo duda, no habra mas nada despues de ti. Eres lo que le dio brillo al dia a dia, y asi sera por siempre, no cambiara, hasta el final de mis dias")
 		corazonAmericano = new Cancion("corazonAmericano",154,"Canta corazon, canta mas alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazon, como soniamos.")
 		almaDeDiamante = new Cancion("almaDeDiamante",216,"Ven a mi con tu dulce luz alma de diamante. Y aunque el sol se nuble despues sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asi con la humanidad alma de diamante")
-		crisantemo = new Cancion("crisantemo",175,"Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abri... encuentra el camino hacia el cielo")
+		crisantemo = new Cancion("crisantemo",175,"Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo")
 
 		especialLaFamilia = new Album("especialLaFamilia",[laFamilia],new Date(17,06,1992),100.000,89.000)
 		laSole = new Album("laSole",[eres,corazonAmericano],new Date(04,02,2005),200.000,130.000)
