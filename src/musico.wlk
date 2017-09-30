@@ -110,11 +110,6 @@ class MusicoPopular
 
 class LuisAlberto
 {
-	
-}
-
-object luisAlberto inherits Musico(new LuisAlberto())
-{
 	var guitarra = fender
 	
 	method guitarra() = guitarra
@@ -122,8 +117,16 @@ object luisAlberto inherits Musico(new LuisAlberto())
 	{
 		guitarra = unaGuitarra
 	}
-	override method habilidad() = (8 * self.guitarra().valor()).min(100)
-	override method interpretaBien(cancion) = true
-	override method cobra(presentacion) = if (presentacion.fecha() < new Date(1,9,2017)) 1000 else 1200
 	
+	method habilidad() = (8 * self.guitarra().valor()).min(100)
+	method interpretaBien(cancion) = true
+	method cobra(presentacion,quien) = if (presentacion.fecha() < new Date(1,9,2017)) 1000 else 1200
+}
+
+object luisAlberto inherits Musico(new LuisAlberto())
+{
+	method guitarra(unaGuitarra)
+	{
+		tipoDeMusico.guitarra(unaGuitarra)
+	}
 }
