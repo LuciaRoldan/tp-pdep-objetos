@@ -10,14 +10,13 @@ class Musico
 	const albumes = []
 	var tipoDeMusico
 	
-	constructor (){}
 	constructor (unTipoDeMusico)
 	{
 		self.tipoDeMusico(unTipoDeMusico)
 	}
 	
 	method habilidad() = tipoDeMusico.habilidad()
-	method interpretaBien(cancion) = self.canciones().contains(cancion) || self.habilidad() > 60 || tipoDeMusico.interpretaBien(cancion)
+	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| tipoDeMusico.interpretaBien(cancion)
 	method cobra(presentacion) = tipoDeMusico.cobra(presentacion,self)
 	
 	method tipoDeMusico() = tipoDeMusico
@@ -53,6 +52,9 @@ class Musico
 	{
 		tipoDeMusico.habilidad(unaHabilidad)
 	}
+	method esDeTuAutoria(cancion) = self.canciones().contains(cancion)
+	method sosHabilidoso() = self.habilidad() > 60 
+	
 }
 
 class MusicoDeGrupo
@@ -106,8 +108,12 @@ class MusicoPopular
 	method cobra(presentacion,quien) = if(presentacion.sosLugarConcurrido()) 500 else 400
 }
 
+class LuisAlberto
+{
+	
+}
 
-object luisAlberto inherits Musico
+object luisAlberto inherits Musico(new LuisAlberto())
 {
 	var guitarra = fender
 	
