@@ -1,3 +1,4 @@
+import cancion.*
 
 class Album {
 	const titulo
@@ -33,13 +34,11 @@ class Album {
 	{
 		unidadesVendidas = unidades
 	}
-	method tuCancionMasLarga() = self.temas().max({cancion => cancion.extencionLetra()})
+	method tuCancionMasLarga() = self.compararCanciones(extencionLetra)
 	method tuvisteBuenasVentas() = self.unidadesVendidas() > (self.unidadesQueSalieronALaVenta()*(0.75)) 
 	
-	method compararCanciones(unCriterio)
-	{
-		return unCriterio.compara(self.temas())
-	}
+	method compararCanciones(unCriterio) = self.temas().max({cancion => unCriterio.compara(cancion)})
+		
 	
 	
 }

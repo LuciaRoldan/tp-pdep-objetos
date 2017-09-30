@@ -10,7 +10,7 @@ object gibson
 	}
 	method arreglate()
 	{
-		sana = false
+		sana = true
 	}
 }
 
