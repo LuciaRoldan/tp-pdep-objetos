@@ -50,7 +50,7 @@ describe "Entrega3"
 		luisAlberto.agregaAlbum(justCrisantemo)
 		
 		remixLaFamilia = new Remix(laFamilia)
-		mashupAlmaDeCrisantemo = new Mashup(almaDeDiamante, crisantemo)
+		mashupAlmaDeCrisantemo = new Mashup([almaDeDiamante, crisantemo])
 	}
 	
 	test "Si buscamos la cancion mas larga segun duracion, del album 'Especial La Familia' encontramos 'La Familia'" 

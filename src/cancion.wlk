@@ -28,24 +28,16 @@ class Remix inherits Cancion
 		unaCancion.titulo(),
 		unaCancion.duracion()*3,
 		"Mueve tu cuelpo baby " + unaCancion.letra() + " yeah oh yeah"
-	)
-	
-	/*Y además!! Hagan que se puedan recibir "n" canciones.
-
-Hay un mensaje que entienden las colecciones llamado "join", que recibe un string, y concatena una lista de strings con eso en el medio.
-Y hay un mensaje llamado "trim" que le quita espacios al principio y al final.
-
-Seguro les van a ser útiles.*/
-	
+	)	
 }
 
 class Mashup inherits Cancion
 {
-	constructor(cancion1, cancion2) = super
+	constructor(canciones) = super
 	(
-		cancion1.titulo() + " " + cancion2.titulo(),
-		cancion1.duracion().max(cancion2.duracion()),
-		cancion1.letra() + " " + cancion2.letra()
+		canciones.map({cancion => cancion.titulo()}).join(" "),
+		canciones.map({cancion => cancion.duracion()}).max(),
+		canciones.map({cancion => cancion.letra()}).join(" ")
 	)
 }
 
