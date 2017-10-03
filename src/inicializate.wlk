@@ -3,6 +3,7 @@ import cancion.*
 import guitarra.*
 import musico.*
 import album.*
+import restriccioines.*
 
 object objetitoMagico
 {
@@ -29,7 +30,7 @@ object objetitoMagico
 	
 	method lunaPark_20_04_2017() = new Presentacion(new Date(20,04,2017),[self.joaquin(),self.lucia(),luisAlberto], lunaPark)
 	method laTrastienda_15_11_2017() = new Presentacion(new Date(02,09,2017),[self.joaquin(),self.lucia(),luisAlberto], laTrastienda)
-	method pdpalooza() = new PresentacionConRestricciones(new Date(15,12,2017), [], lunaPark)
+	method pdepalooza() = new PresentacionConRestricciones(new Date(15,12,2017), [], lunaPark, [new RestriccionAliciaEnElPais(), new RestriccionTieneUnaCancion(), new RestriccionTieneMasDe70DeHabilidad()])
 	
 	method inicializate1()
 	{

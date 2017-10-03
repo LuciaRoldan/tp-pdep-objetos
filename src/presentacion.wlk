@@ -1,4 +1,5 @@
 import cancion.*
+import restriccioines.*
 
 class Presentacion
 {
@@ -55,40 +56,17 @@ object laTrastienda
 
 class PresentacionConRestricciones inherits Presentacion
 {
-	var condicionHabilidad = 70
-	var condicionCanciones = 0
-	var cancionPdP = new Cancion("Cancion De Alicia En El Pais",510,"Quien sabe Alicia, este país no estuvo hecho porque sí. Te vas a ir, vas a salir pero te quedas, ¿dónde más vas a ir? Y es que aquí, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabo ese juego que te hacía feliz.")
-		
-	method condicionHabilidad() = condicionHabilidad
-	method condicionHabilidad(unaCondicion)
+	const restricciones
+	
+	constructor(unaFecha,unosArtistas,unLugar,unasRestricciones) = super(unaFecha,unosArtistas,unLugar)
 	{
-		condicionHabilidad = unaCondicion
+		restricciones = unasRestricciones
 	}
-	method condicionCanciones() = condicionCanciones
-	method condicionCanciones(unaCondicion)
+	
+	method restricciones() = restricciones
+	method verificaArtista(unArtista)
 	{
-		condicionCanciones = unaCondicion
-	}
-	method cancionPdP() = cancionPdP
-	method cancionPdP(unaCancion)
-	{
-		cancionPdP = unaCancion
-	}
-		method verificaArtista(unArtista)
-	{
-					
-		if ( unArtista.habilidad() <= self.condicionHabilidad())
-		{
-			throw new Exception("La habilidad del artista tiene que ser mayor a 70")
-		}
-		if ( unArtista.canciones().size() <= self.condicionCanciones())
-		{
-			throw new Exception("El artista debe haber compuesto al menos una cancion")
-		}
-		if ( unArtista.interpretaBien(self.cancionPdP()).negate())
-		{
-			throw new Exception("El artista debe saber ejecutar 'Cancion De Alicia En El Pais'")
-		}
+			self.restricciones().forEach({restriccion => restriccion.cumple(unArtista)})
 	}
 	override method agregaArtista(unArtista)
 	{

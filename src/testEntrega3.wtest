@@ -3,6 +3,8 @@ import cancion.*
 import guitarra.*
 import musico.*
 import album.*
+import restriccioines.*
+import inicializate.*
 
 describe "Entrega3" 
 {
@@ -54,7 +56,7 @@ describe "Entrega3"
 		remixLaFamilia = new Remix(laFamilia)
 		mashupAlmaDeCrisantemo = new Mashup([almaDeDiamante, crisantemo])
 		
-		pdepalooza = new PresentacionConRestricciones(new Date(15,12,2017), [], lunaPark)
+		pdepalooza = objetitoMagico.pdepalooza()
 	}
 	
 	test "Si buscamos la cancion mas larga segun duracion, del album 'Especial La Familia' encontramos 'La Familia'" 
@@ -98,7 +100,7 @@ describe "Entrega3"
 	{
 		joaquin.dejaGrupo()
 		
-		const excepcionEsperada = new Exception("La habilidad del artista tiene que ser mayor a 70")
+		const excepcionEsperada = new RestriccionTieneMasDe70DeHabilidad()
   		const bloqueQueDebeExplotar = { pdepalooza.agregaArtista(joaquin) }
   		
  		 assert.throwsExceptionLike(excepcionEsperada, bloqueQueDebeExplotar)
@@ -109,7 +111,7 @@ describe "Entrega3"
 		lucia.dejaGrupo()
 		lucia.habilidad(90)
 		
-		const excepcionEsperada = new Exception("El artista debe haber compuesto al menos una cancion")
+		const excepcionEsperada = new RestriccionTieneUnaCancion()
   		const bloqueQueDebeExplotar = { pdepalooza.agregaArtista(lucia) }
   		
  		 assert.throwsExceptionLike(excepcionEsperada, bloqueQueDebeExplotar)
@@ -121,15 +123,4 @@ describe "Entrega3"
 		pdepalooza.agregaArtista(soledad)
 		assert.that(pdepalooza.artistas().contains(soledad))
 	}
-	
-	test "Si cambiamos la cantidad de canciones necesarias para ser aceptados al Pdepalooza a 20, Luis Alberto no es aceptado" 
-	{
-		pdepalooza.condicionCanciones(20)
-		
-		const excepcionEsperada = new Exception("El artista debe haber compuesto al menos una cancion")
-  		const bloqueQueDebeExplotar = { pdepalooza.agregaArtista(luisAlberto) }
-  		
- 		 assert.throwsExceptionLike(excepcionEsperada, bloqueQueDebeExplotar)
-	}
-	
 }
