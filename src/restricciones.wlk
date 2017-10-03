@@ -8,7 +8,7 @@ class RestriccionAliciaEnElPais inherits Exception
 
 class RestriccionTieneUnaCancion inherits Exception
 {
-	constructor() = super("El artiste debe tener al menos una cancion")
+	constructor() = super("El artiste debe tener canciones suficientes")
 	method cumple(artista) = if(artista.canciones().size() > 0) null else throw self
 }
 

@@ -3,7 +3,7 @@ import cancion.*
 import guitarra.*
 import musico.*
 import album.*
-import restriccioines.*
+import restricciones.*
 
 object objetitoMagico
 {
@@ -32,18 +32,17 @@ object objetitoMagico
 	method laTrastienda_15_11_2017() = new Presentacion(new Date(02,09,2017),[self.joaquin(),self.lucia(),luisAlberto], laTrastienda)
 	method pdepalooza() = new PresentacionConRestricciones(new Date(15,12,2017), [], lunaPark, [new RestriccionAliciaEnElPais(), new RestriccionTieneUnaCancion(), new RestriccionTieneMasDe70DeHabilidad()])
 	
-	method inicializate1()
+	/*method inicializate1()
 	{
+		const cisne = self.cisne()
+		const laFamilia = self.laFamilia()
 		
-		self.cisne()
-		self.laFamilia()
+		const joaquin = self.joaquin()
+		const lucia = self.lucia()
 		
-		self.joaquin()
-		self.lucia()
+		const lunaPark_20_04_2017 = self.lunaPark_20_04_2017()
+		const laTrastienda_15_11_2017 = self.laTrastienda_15_11_2017()
 		
-		self.lunaPark_20_04_2017()
-		self.laTrastienda_15_11_2017()
-		
-	}
+	}*/
 
 }

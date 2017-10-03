@@ -17,6 +17,7 @@ describe "Entrega1"
  
 	fixture
 	{
+		//objetitoMagico.inicializate1()
 		cisne = objetitoMagico.cisne()
 		laFamilia = objetitoMagico.laFamilia()
 		
@@ -120,7 +121,7 @@ describe "Entrega1"
 
 	test "Joaquin cobra 100 por la presentacion de la Trastienda del 15/11/2017, si es el unico artista"
 	{
-		laTrastienda_15_11_2017.artistas([joaquin])
+		laTrastienda_15_11_2017.agregaArtistas([joaquin])
 		assert.equals(joaquin.cobra(laTrastienda_15_11_2017),100)
 	}
 

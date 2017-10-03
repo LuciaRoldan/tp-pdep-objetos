@@ -7,7 +7,7 @@ import album.*
 
 class Musico 
 {
-	const albumes = []
+	const albumes = #{}
 	var tipoDeMusico
 	
 	constructor (unTipoDeMusico)
@@ -39,7 +39,7 @@ class Musico
 	}
 	method canciones()
 	{
-		const canciones = []
+		const canciones = #{}
 		self.albumes().forEach({album => canciones.addAll(album.temas())})
 		return canciones  
 	}

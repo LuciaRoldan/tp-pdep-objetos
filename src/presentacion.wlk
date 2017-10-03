@@ -1,19 +1,16 @@
 import cancion.*
-import restriccioines.*
+import restricciones.*
 
 class Presentacion
 {
-	var fecha = new Date()
-	var artistas = []
+	var fecha 
+	const artistas = #{}
 	var lugar 
 	
-	constructor()
-	{
-	}
 	constructor(unaFecha,unosArtistas,unLugar)
 	{
 		self.fecha(unaFecha)
-		self.artistas(unosArtistas)
+		self.agregaArtistas(unosArtistas)
 		self.lugar(unLugar)
 	}
 	method lugar() = lugar
@@ -27,25 +24,26 @@ class Presentacion
 		fecha = unaFecha
 	}
 	method artistas() = artistas
-	method artistas(unosArtistas)
+	method agregaArtistas(unosArtistas)
 	{
-		artistas = unosArtistas
+		self.artistas().clear()
+		self.artistas().addAll(unosArtistas)
 	}
-	method capacidad() = lugar.capacidad(self.fecha())
-	method costo() = artistas.sum({artista =>artista.cobra(self)})
-	method sosLugarConcurrido() = self.capacidad() > 5000
-	method sosUnicoArtista(artista) = self.artistas() == [artista]
 	method agregaArtista(unArtista)
 	{
 		self.artistas().add(unArtista)
 	}
+	method capacidad() = lugar.capacidad(self.fecha())
+	method costo() = artistas.sum({artista =>artista.cobra(self)})
+	method sosLugarConcurrido() = self.capacidad() > 5000
+	method sosUnicoArtista(artista) = self.artistas() == #{artista}
+	
 	
 }
 
 object lunaPark 
 {
-	const capacidad = 9290
-	method capacidad(fecha) = capacidad
+	method capacidad(fecha) = 9290
 }
 
 object laTrastienda
@@ -67,6 +65,11 @@ class PresentacionConRestricciones inherits Presentacion
 	method verificaArtista(unArtista)
 	{
 			self.restricciones().forEach({restriccion => restriccion.cumple(unArtista)})
+	}
+	override method agregaArtistas(unosArtistas)
+	{
+		unosArtistas.forEach({ artista => self.verificaArtista(artista) })
+		super(unosArtistas)
 	}
 	override method agregaArtista(unArtista)
 	{

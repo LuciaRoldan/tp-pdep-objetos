@@ -3,7 +3,7 @@ import cancion.*
 import guitarra.*
 import musico.*
 import album.*
-import restriccioines.*
+import restricciones.*
 import inicializate.*
 
 describe "Entrega3" 
