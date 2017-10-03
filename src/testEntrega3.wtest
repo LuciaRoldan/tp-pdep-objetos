@@ -93,7 +93,7 @@ describe "Entrega3"
 	test "Podemos agregar a Luis Alberto al recital de Pdpalooza" 
 	{
 		pdepalooza.agregaArtista(luisAlberto)
-		assert.that(pdepalooza.artistas().contains(luisAlberto))
+		assert.that(pdepalooza.vaATocar(luisAlberto))
 	}
 	
 	test "Si intentamos agregar a Joaquin al Pdpalooza como solista, tira error" 
