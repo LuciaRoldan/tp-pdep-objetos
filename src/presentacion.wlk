@@ -9,10 +9,11 @@ class Presentacion
 	constructor()
 	{
 	}
-	constructor(unaFecha,unosArtistas)
+	constructor(unaFecha,unosArtistas,unLugar)
 	{
 		self.fecha(unaFecha)
 		self.artistas(unosArtistas)
+		self.lugar(unLugar)
 	}
 	method lugar() = lugar
 	method lugar(unLugar)
@@ -29,7 +30,7 @@ class Presentacion
 	{
 		artistas = unosArtistas
 	}
-	method capacidad()
+	method capacidad() = lugar.capacidad(self.fecha())
 	method costo() = artistas.sum({artista =>artista.cobra(self)})
 	method sosLugarConcurrido() = self.capacidad() > 5000
 	method sosUnicoArtista(artista) = self.artistas() == [artista]
@@ -40,20 +41,19 @@ class Presentacion
 	
 }
 
-
-class PresentacionEnLunaPark inherits Presentacion
+object lunaPark 
 {
 	const capacidad = 9290
-	override method capacidad() = capacidad
+	method capacidad(fecha) = capacidad
 }
 
-class PresentacionEnLaTrastienda inherits Presentacion
+object laTrastienda
 {
-	method esSabado() = (self.fecha().dayOfWeek() == 6)
-	override method capacidad() = if(self.esSabado()) 700 else 400
+	method esSabado(fecha) = (fecha.dayOfWeek() == 6)
+	method capacidad(fecha) = if(self.esSabado(fecha)) 700 else 400
 }
 
-object pdepalooza inherits PresentacionEnLunaPark(new Date(15,12,2017),[])
+class PresentacionConRestricciones inherits Presentacion
 {
 	var condicionHabilidad = 70
 	var condicionCanciones = 0

@@ -24,6 +24,8 @@ describe "Entrega3"
 	const justCrisantemo
 	const remixLaFamilia
 	const mashupAlmaDeCrisantemo
+	
+	const pdepalooza
  
 	fixture
 	{
@@ -51,6 +53,8 @@ describe "Entrega3"
 		
 		remixLaFamilia = new Remix(laFamilia)
 		mashupAlmaDeCrisantemo = new Mashup([almaDeDiamante, crisantemo])
+		
+		pdepalooza = new PresentacionConRestricciones(new Date(15,12,2017), [], lunaPark)
 	}
 	
 	test "Si buscamos la cancion mas larga segun duracion, del album 'Especial La Familia' encontramos 'La Familia'" 

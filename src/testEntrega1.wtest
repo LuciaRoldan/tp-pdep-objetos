@@ -23,8 +23,8 @@ describe "Entrega1"
 		joaquin = new Musico(new MusicoDeGrupo(20,5))
 		lucia = objetitoMagico.lucia()
 		
-		lunaPark_20_04_2017 = new PresentacionEnLunaPark(new Date(20,04,2017),[joaquin,lucia,luisAlberto])
-		laTrastienda_15_11_2017 = new PresentacionEnLaTrastienda(new Date(02,09,2017),[joaquin,lucia,luisAlberto])
+		lunaPark_20_04_2017 = new Presentacion(new Date(20,04,2017),[joaquin,lucia,luisAlberto],lunaPark)
+		laTrastienda_15_11_2017 = new Presentacion(new Date(02,09,2017),[joaquin,lucia,luisAlberto],laTrastienda)
 		
 		
 	}

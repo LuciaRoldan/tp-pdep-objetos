@@ -25,10 +25,11 @@ object objetitoMagico
 	method	lucia() = new Musico(new MusicoPopular(70,"familia"))
 		
 	method	remixLaFamilia() = new Remix(self.laFamilia())
-	method	mashupAlmaDeCrisantemo() = new Mashup(self.almaDeDiamante(), self.crisantemo())
+	method	mashupAlmaDeCrisantemo() = new Mashup([self.almaDeDiamante(), self.crisantemo()])
 	
-	method lunaPark_20_04_2017() = new PresentacionEnLunaPark(new Date(20,04,2017),[self.joaquin(),self.lucia(),luisAlberto])
-	method laTrastienda_15_11_2017() = new PresentacionEnLaTrastienda(new Date(02,09,2017),[self.joaquin(),self.lucia(),luisAlberto])
+	method lunaPark_20_04_2017() = new Presentacion(new Date(20,04,2017),[self.joaquin(),self.lucia(),luisAlberto], lunaPark)
+	method laTrastienda_15_11_2017() = new Presentacion(new Date(02,09,2017),[self.joaquin(),self.lucia(),luisAlberto], laTrastienda)
+	method pdpalooza() = new PresentacionConRestricciones(new Date(15,12,2017), [], lunaPark)
 	
 	method inicializate1()
 	{
