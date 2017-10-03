@@ -14,10 +14,8 @@ describe "Entrega1"
 	const joaquin
 	const lucia
 	
- 
 	fixture
 	{
-		//objetitoMagico.inicializate1()
 		cisne = objetitoMagico.cisne()
 		laFamilia = objetitoMagico.laFamilia()
 		

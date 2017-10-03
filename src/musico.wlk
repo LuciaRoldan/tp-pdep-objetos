@@ -44,9 +44,9 @@ class Musico
 		return canciones  
 	}
 	method sosMinimalista() = self.canciones().all({cancion => cancion.sosCorta()})
-	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().filter({cancion => cancion.contenes(palabraBuscada)}).asSet()
+	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().filter({cancion => cancion.contenes(palabraBuscada)})
 	method cuantoDuraTuObra() = self.canciones().sum({cancion => cancion.duracion()})
-	method laPego() = self.albumes().all({album => album.tuvisteBuenasVentas()})
+	method laPegaste() = self.albumes().all({album => album.tuvisteBuenasVentas()})
 	
 	method habilidad(unaHabilidad)
 	{
