@@ -20,10 +20,10 @@ object objetitoMagico
 	method	paraLosArboles() = new Album("paraLosArboles",[self.cisne(),self.almaDeDiamante()],new Date(31,03,2003),50.000,49.000)
 	method	justCrisantemo() = new Album("justCrisantemo",[self.crisantemo()],new Date(05,12,2007),28.000,27.500)
 		
-	method	kike() = new Musico(new MusicoDeGrupo(60,20))
-	method	soledad() = new Musico(new MusicoPopular(55,"amor"))
-	method	joaquin() = new Musico(new MusicoDeGrupo(20,5))
-	method	lucia() = new Musico(new MusicoPopular(70,"familia"))
+	method	kike() = new Musico(new MusicoDeGrupo(60,20),new Imparero(),new CobraPorFecha(new Date(08,01,2018),4000,50))
+	method	soledad() = new Musico(new MusicoPopular(55), new Palabrero("amor"), new CobraPorMusico(6000))
+	method	joaquin() = new Musico(new MusicoDeGrupo(20,5), new Larguero(300),new CobraPorMusico(100))
+	method	lucia() = new Musico(new MusicoPopular(70), new Palabrero("familia"), new CobraPorCapacidad(500, 5000))
 		
 	method	remixLaFamilia() = new Remix(self.laFamilia())
 	method	mashupAlmaDeCrisantemo() = new Mashup([self.almaDeDiamante(), self.crisantemo()])

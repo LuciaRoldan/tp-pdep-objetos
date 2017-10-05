@@ -9,20 +9,34 @@ class Musico
 {
 	const albumes = #{}
 	var tipoDeMusico
+	var categoriaDeMusico
+	var tipoDeCobro
 	
-	constructor (unTipoDeMusico)
+	constructor (unTipoDeMusico, unaCategoriaDeMusico, unTipoDeCobro)
 	{
 		self.tipoDeMusico(unTipoDeMusico)
+		self.categoriaDeMusico(unaCategoriaDeMusico)
+		self.tipoDeCobro(unTipoDeCobro)
 	}
 	
 	method habilidad() = tipoDeMusico.habilidad()
-	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| tipoDeMusico.interpretaBien(cancion)
-	method cobra(presentacion) = tipoDeMusico.cobra(presentacion,self)
+	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| categoriaDeMusico.interpretaBien(cancion)
+	method cobra(presentacion) = tipoDeCobro.cobra(presentacion,self)
 	
 	method tipoDeMusico() = tipoDeMusico
 	method tipoDeMusico(unTipoDeMusico) 
 	{
 		tipoDeMusico = unTipoDeMusico
+	}
+	method categoriaDeMusico() = categoriaDeMusico
+	method categoriaDeMusico(unaCategoriaDeMusico) 
+	{
+		categoriaDeMusico = unaCategoriaDeMusico
+	}
+	method tipoDeCobro() = tipoDeCobro
+	method tipoDeCobro(unTipoDeCobro) 
+	{
+		tipoDeCobro = unTipoDeCobro
 	}
 	method agrupate(grupoNuevo)
 	{
@@ -57,6 +71,83 @@ class Musico
 	
 }
 
+class Palabrero
+{
+	const palabraMagica
+	
+	constructor (unaPalabraMagica)
+	{
+		palabraMagica = unaPalabraMagica
+	}	
+	
+	method interpretaBien(cancion) = cancion.letra().contains(palabraMagica)
+}
+
+class Larguero
+{
+	
+	const numeroMagico
+	
+	constructor (unNumeroMagico)
+	{
+		numeroMagico = unNumeroMagico
+	}
+	
+	method numeroMagico() = numeroMagico
+	
+	method interpretaBien(cancion) = (cancion.duracion() > self.numeroMagico())
+	
+}
+
+class Imparero
+{
+		
+	method interpretaBien(cancion) = (cancion.duracion().mod(2) != 0 )
+	
+}
+
+class CobraPorMusico
+{
+	const cobro
+	
+	constructor (unaPlata)
+	{
+		cobro = unaPlata
+	}
+	
+	method cobra(presentacion,quien) = if (presentacion.sosUnicoArtista(quien)) cobro else cobro/2
+}
+
+class CobraPorCapacidad
+{
+	const capacidad
+	const cobro
+	
+	constructor (unosPesos, unasPersonas)
+	{
+		capacidad = unasPersonas
+		cobro = unosPesos
+	}
+	
+	method cobra(presentacion,quien) = if(presentacion.sosLugarConcurrido(capacidad)) cobro else cobro-100
+}
+
+class CobraPorFecha
+{
+	const fecha
+	const cobro
+	const adicional
+	
+	constructor (unaFecha, unosPesos, unPorcentaje)
+	{
+		fecha = unaFecha
+		cobro = unosPesos
+		adicional = 1 + unPorcentaje/100
+	}
+	
+	method cobra(presentacion,quien) = if (presentacion.fecha() < unaFecha) cobro else (cobro*adicional)
+}
+
 class MusicoDeGrupo
 {
 	var grupo = true
@@ -78,20 +169,19 @@ class MusicoDeGrupo
 	{
 		habilidad = unaHabilidad
 	}
-	method interpretaBien(cancion) = (cancion.duracion() > 300)
-	method cobra(presentacion,quien) = if (presentacion.sosUnicoArtista(quien)) 100 else 50
 }
+
+
 
 class MusicoPopular
 {
-	const palabraMagica
+	
 	var habilidad
 	var grupo = false
 	
-	constructor (unaHabilidad, unaPalabraMagica)
+	constructor (unaHabilidad)
 	{
 		habilidad = unaHabilidad
-		palabraMagica = unaPalabraMagica
 	}
 	
 	method grupo() = grupo
@@ -104,11 +194,10 @@ class MusicoPopular
 	{
 		habilidad = unaHabilidad
 	}
-	method interpretaBien(cancion) = cancion.letra().contains(palabraMagica)
-	method cobra(presentacion,quien) = if(presentacion.sosLugarConcurrido()) 500 else 400
 }
 
-class LuisAlberto
+
+object luisAlberto inherits Musico(null, null, new CobraPorFecha(new Date(01,09,2017), 1000, 20))
 {
 	var guitarra = fender
 	
@@ -118,15 +207,6 @@ class LuisAlberto
 		guitarra = unaGuitarra
 	}
 	
-	method habilidad() = (8 * self.guitarra().valor()).min(100)
-	method interpretaBien(cancion) = true
-	method cobra(presentacion,quien) = if (presentacion.fecha() < new Date(1,9,2017)) 1000 else 1200
-}
-
-object luisAlberto inherits Musico(new LuisAlberto())
-{
-	method guitarra(unaGuitarra)
-	{
-		tipoDeMusico.guitarra(unaGuitarra)
-	}
+	override method habilidad() = (8 * self.guitarra().valor()).min(100)
+	override method interpretaBien(cancion) = true
 }
