@@ -1,0 +1,78 @@
+import presentacion.*
+import cancion.*
+import guitarra.*
+import musico.*
+import album.*
+import restricciones.*
+import inicializate.*
+
+describe "Entrega3" 
+{	
+	const cisne
+	const laFamilia
+	
+	const eres
+	const corazonAmericano
+	const almaDeDiamante
+	const crisantemo
+	const especialLaFamilia
+	const laSole
+	const paraLosArboles
+	const justCrisantemo
+	const remixLaFamilia
+	const mashupAlmaDeCrisantemo
+	
+	const pdepalooza
+ 
+	fixture
+	{
+		cisne = objetitoMagico.cisne()
+		laFamilia = objetitoMagico.laFamilia()
+		eres = objetitoMagico.eres()
+		corazonAmericano = objetitoMagico.corazonAmericano()
+		almaDeDiamante = objetitoMagico.almaDeDiamante()
+		crisantemo = objetitoMagico.crisantemo()
+		
+		especialLaFamilia = new Album("especialLaFamilia",[laFamilia],new Date(17,06,1992),100.000,89.000)
+		laSole = new Album("laSole",[eres,corazonAmericano],new Date(04,02,2005),200.000,130.000)
+		paraLosArboles = new Album("paraLosArboles",[cisne,almaDeDiamante],new Date(31,03,2003),50.000,49.000)
+		justCrisantemo = new Album("justCrisantemo",[crisantemo],new Date(05,12,2007),28.000,27.500)
+		
+		luisAlberto.agregaAlbum(paraLosArboles)
+		luisAlberto.agregaAlbum(justCrisantemo)
+		
+		remixLaFamilia = objetitoMagico.remixLaFamilia()
+		mashupAlmaDeCrisantemo = objetitoMagico.mashupAlmaDeCrisantemo()
+		
+		pdepalooza = objetitoMagico.pdepalooza()
+	}
+	test "Joaquín pasa a ser imparero.
+Queremos saber si Joaquín canta bien la canción “La Familia”
+Sigue siendo Sí, ya que la canción es de su autoría"
+{
+	assert.that(true)
+}
+/*
+Joaquín pasa a ser imparero.
+Queremos saber si Joaquín canta bien la canción “Cisne”.
+No (dura 312 segundos, una cantidad par)
+Hacer que Kike pase a ser palabrero de la palabra “de”. 
+Queremos saber de esta lista de canciones: “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Canción de Alicia en el país” y “Crisantemo” cuáles puede tocar bien.
+El conjunto de canciones que toca bien son: “Corazón americano”, “Eres”, “Alma de diamante” y “Crisantemo”
+Queremos saber cuáles canciones puede tocar bien Joaquín, dada esta lista de canciones: “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Canción de Alicia en el país” y “Crisantemo”
+La lista se compone de “La Familia” (de su autoría), “Cisne” y “Canción de Alicia en el país” (ambas son largas)
+Hacer que Joaquín pase a ser palabrero de la palabra “xilofón”. 
+Queremos saber cuáles canciones puede tocar bien Joaquín con su nueva configuración, dada esta lista de canciones: “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Canción de Alicia en el país” y “Crisantemo”
+Solo canta bien “La Familia” que es de su autoría.
+Lucía pasa a ser imparera. 
+Queremos saber cuáles canciones puede tocar bien Lucía con su nueva configuración, dada esta lista de canciones: “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Canción de Alicia en el país” y “Crisantemo”
+Eres y Crisantemo, que son de duración impar.
+Joaquín pasa a cobrar por expectativa inflacionaria ($ 1000 y a partir de febrero del 2017 un 20% más). Averiguar cuánto cobra por la presentación de Prix D’Ami
+1.200 (30/06/2017 es la presentación que supera a 02/2017)
+Cambiar la fecha de Prix D’Ami para el 24/01/2017.
+Cambiar a Joaquín para que cobre por expectativa inflacionaria ($ 1000 y a partir de febrero del 2017 un 20% más). Averiguar cuánto cobra por la presentación de Prix D’Ami
+$ 1.000 (24/01/2017 es anterior a febrero de 2017)
+Averiguar cuánto cobra Joaquín por la presentación de Prix D’Ami
+$ 50 (tocan otros músicos)
+*/
+}

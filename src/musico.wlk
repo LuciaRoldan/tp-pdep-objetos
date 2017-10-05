@@ -68,6 +68,7 @@ class Musico
 	}
 	method esDeTuAutoria(cancion) = self.canciones().contains(cancion)
 	method sosHabilidoso() = self.habilidad() > 60 
+	method cualSabesInterpretar(listaDeCanciones) = listaDeCanciones.sortBy({ cancion => categoriaDeMusico.interpretaBien(cancion)})
 	
 }
 
