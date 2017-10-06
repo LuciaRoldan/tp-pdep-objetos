@@ -22,7 +22,6 @@ class Musico
 	method habilidad() = tipoDeMusico.habilidad()
 	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| categoriaDeMusico.interpretaBien(cancion)
 	method cobra(presentacion) = tipoDeCobro.cobra(presentacion,self)
-	
 	method tipoDeMusico() = tipoDeMusico
 	method tipoDeMusico(unTipoDeMusico) 
 	{
@@ -61,7 +60,6 @@ class Musico
 	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().filter({cancion => cancion.contenes(palabraBuscada)})
 	method cuantoDuraTuObra() = self.canciones().sum({cancion => cancion.duracion()})
 	method laPegaste() = self.albumes().all({album => album.tuvisteBuenasVentas()})
-	
 	method habilidad(unaHabilidad)
 	{
 		tipoDeMusico.habilidad(unaHabilidad)
@@ -171,8 +169,6 @@ class MusicoDeGrupo
 		habilidad = unaHabilidad
 	}
 }
-
-
 
 class MusicoPopular
 {

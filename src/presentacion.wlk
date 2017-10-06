@@ -52,6 +52,16 @@ object laTrastienda
 	method capacidad(fecha) = if(self.esSabado(fecha)) 700 else 400
 }
 
+object prixDAmi
+{
+	method capacidad(fecha) = 150
+}
+
+object laCueva
+{
+	method capacidad(fecha) = 14000
+}
+
 class PresentacionConRestricciones inherits Presentacion
 {
 	const restricciones

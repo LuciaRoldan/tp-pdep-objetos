@@ -20,10 +20,14 @@ object objetitoMagico
 	method	paraLosArboles() = new Album("paraLosArboles",[self.cisne(),self.almaDeDiamante()],new Date(31,03,2003),50.000,49.000)
 	method	justCrisantemo() = new Album("justCrisantemo",[self.crisantemo()],new Date(05,12,2007),28.000,27.500)
 		
-	method	kike() = new Musico(new MusicoDeGrupo(60,20),new Imparero(),new CobraPorFecha(new Date(08,01,2018),4000,50))
+	//method	kike() = new Musico(new MusicoDeGrupo(60,20),new Imparero(),new CobraPorFecha(new Date(08,01,2018),4000,50))
 	method	soledad() = new Musico(new MusicoPopular(55), new Palabrero("amor"), new CobraPorMusico(6000))
-	method	joaquin() = new Musico(new MusicoDeGrupo(20,5), new Larguero(300),new CobraPorMusico(100))
+	//method	joaquin() = new Musico(new MusicoDeGrupo(20,5), new Larguero(300),new CobraPorMusico(100))
 	method	lucia() = new Musico(new MusicoPopular(70), new Palabrero("familia"), new CobraPorCapacidad(500, 5000))
+	method	joaquin() = new Musico(new MusicoPopular(5), new Larguero(300),new CobraPorMusico(100))
+		
+	method eternoRetorno() = true
+	method pimpisole() = true
 		
 	method	remixLaFamilia() = new Remix(self.laFamilia())
 	method	mashupAlmaDeCrisantemo() = new Mashup([self.almaDeDiamante(), self.crisantemo()])
@@ -31,6 +35,8 @@ object objetitoMagico
 	method lunaPark_20_04_2017() = new Presentacion(new Date(20,04,2017),[self.joaquin(),self.lucia(),luisAlberto], lunaPark)
 	method laTrastienda_15_11_2017() = new Presentacion(new Date(02,09,2017),[self.joaquin(),self.lucia(),luisAlberto], laTrastienda)
 	method pdepalooza() = new PresentacionConRestricciones(new Date(15,12,2017), [], lunaPark, [new RestriccionAliciaEnElPais(), new RestriccionTieneUnaCancion(), new RestriccionTieneMasDe70DeHabilidad()])
+	method prixDAmi_30_06_2017() = new Presentacion(new Date(30,06,2017), [self.joaquin(), self.soledad(), self.eternoRetorno()], prixDAmi)
+	method laCueva_05_01_2018() = new Presentacion(new Date(05,01,2018), [self.pimpisole()], laCueva)
 	
 	/*method inicializate1()
 	{
