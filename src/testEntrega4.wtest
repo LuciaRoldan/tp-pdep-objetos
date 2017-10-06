@@ -46,33 +46,100 @@ describe "Entrega3"
 		
 		pdepalooza = objetitoMagico.pdepalooza()
 	}
-	test "Joaquín pasa a ser imparero.
-Queremos saber si Joaquín canta bien la canción “La Familia”
-Sigue siendo Sí, ya que la canción es de su autoría"
-{
-	assert.that(true)
-}
-/*
-Joaquín pasa a ser imparero.
-Queremos saber si Joaquín canta bien la canción “Cisne”.
-No (dura 312 segundos, una cantidad par)
-Hacer que Kike pase a ser palabrero de la palabra “de”. 
-Queremos saber de esta lista de canciones: “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Canción de Alicia en el país” y “Crisantemo” cuáles puede tocar bien.
-El conjunto de canciones que toca bien son: “Corazón americano”, “Eres”, “Alma de diamante” y “Crisantemo”
-Queremos saber cuáles canciones puede tocar bien Joaquín, dada esta lista de canciones: “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Canción de Alicia en el país” y “Crisantemo”
-La lista se compone de “La Familia” (de su autoría), “Cisne” y “Canción de Alicia en el país” (ambas son largas)
-Hacer que Joaquín pase a ser palabrero de la palabra “xilofón”. 
-Queremos saber cuáles canciones puede tocar bien Joaquín con su nueva configuración, dada esta lista de canciones: “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Canción de Alicia en el país” y “Crisantemo”
-Solo canta bien “La Familia” que es de su autoría.
-Lucía pasa a ser imparera. 
-Queremos saber cuáles canciones puede tocar bien Lucía con su nueva configuración, dada esta lista de canciones: “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Canción de Alicia en el país” y “Crisantemo”
-Eres y Crisantemo, que son de duración impar.
-Joaquín pasa a cobrar por expectativa inflacionaria ($ 1000 y a partir de febrero del 2017 un 20% más). Averiguar cuánto cobra por la presentación de Prix D’Ami
-1.200 (30/06/2017 es la presentación que supera a 02/2017)
-Cambiar la fecha de Prix D’Ami para el 24/01/2017.
-Cambiar a Joaquín para que cobre por expectativa inflacionaria ($ 1000 y a partir de febrero del 2017 un 20% más). Averiguar cuánto cobra por la presentación de Prix D’Ami
-$ 1.000 (24/01/2017 es anterior a febrero de 2017)
-Averiguar cuánto cobra Joaquín por la presentación de Prix D’Ami
-$ 50 (tocan otros músicos)
-*/
+	
+	test "Si Joaquin pasa a ser imparero, sigue interpretando bien la cancion 'La Familia'"
+	{
+		assert.that(true)
+	}
+	
+	test "Si Joaquin pasa a ser imparero, ya no interpretando bien la cancion 'Cisne'"
+	{
+		assert.that(true)
+	}
+	
+	test "Si Kike pasa a ser palabrero (con su palabra magica siendo 'de'), interpreta bien 'Corazon americano', 'Eres', 
+'La familia', 'Cisne', 'Alma de diamante', 'Cancion de Alicia en el pais' y 'Crisantemo'"
+	{
+		assert.that(true)
+	}
+	
+	test "Si clasificamos  �Coraz�n americano�, �Eres�, �La familia�, �Cisne�, �Alma de diamante�, �Cancion de Alicia en el pais� y �Crisantemo�
+segun si Joaquin las interpreta bien, obtenemos �La familia�, �Cisne� y �Cancion de Alicia en el pais�"
+	{
+		assert.that(true)
+	}
+	
+	test "Si cambiamos a Joaquin a palabrero (con su palabra siendo 'Xilofon' y consultamos lo mismo del test anterior, obtenemos �La familia�"
+	{
+		assert.that(true)
+	}
+	
+	test "Con su nueva configuracion, Joaquin solo puede interpretar bien las canciones que son de su autoria de la siguiente lista: 
+�Coraz�n americano�, �Eres�, �La familia�, �Cisne�, �Alma de diamante�, �Cancion de Alicia en el pais� y �Crisantemo�"
+	{
+		assert.that(true)
+	}
+	
+	test "Si Lucia pasa a ser imparera, de �Corazon americano�, �Eres�, �La familia�, �Cisne�, �Alma de diamante�, 
+�Cancion de Alicia en el pais� y �Crisantemo� solo interpreta bien 'Eres' y 'Crisantemo'"
+	{
+		assert.that(true)
+	}
+	
+	test "Si Joaquin pasa a cobrar por expectativa inflacionaria ($1000 y a partir de 02/17 un 20% mas), cobra $1200 por la presentacion de Prix D'Ami"
+	{
+		assert.that(true)
+	}
+	
+	test "Si cambiamos la fecha de la presentacion en Prix D'Ami al 24/01/2017 y preuntamos lo anterior, Joaquin cobra $1000"
+	{
+		assert.that(true)
+	}
+	
+	test "Joaquin, sin nungun cambio, cobra $50 por la presentacion en Prix D'Ami"
+	{
+		assert.that(true)
+	}
+	
+	test "Ahora Joaquin cobra $2500 por presentaciones con capacidad de hasta 13000 personas, 
+preguntamos cuanto cobra por la presentacion en Prix D'Ami y descubrimos que cobra $2500"
+	{
+		assert.that(true)
+	}
+	
+	test "El Eterno Retorno cobra 5500 por el show de Prix D'Ami"
+	{
+		assert.that(true)
+	}
+	
+	test "El costo total del show de Prix D'Ami es $8550"
+	{
+		assert.that(true)
+	}
+	
+	test "El costo total del show de La Cueva es $5532"
+	{
+		assert.that(true)
+	}
+	
+	test "La habilidad de El Eterno Retorno es 154"
+	{
+		assert.that(true)
+	}
+	
+	test "La magia del show de Prix D'Ami es 234"
+	{
+		assert.that(true)
+	}
+	
+	test "Pimpisole no interpreta bien la cancion 'Cisne'"
+	{
+		assert.that(true)
+	}
+	
+	test "El Eterno Retorno puede interpretar bien la cancion 'Crisantemo'"
+	{
+		assert.that(true)
+	}
+
 }
