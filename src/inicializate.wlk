@@ -39,17 +39,5 @@ object objetitoMagico
 	method prixDAmi_30_06_2017() = new Presentacion(new Date(30,06,2017), [self.joaquin(), self.soledad(), self.eternoRetorno()], prixDAmi)
 	method laCueva_05_01_2018() = new Presentacion(new Date(05,01,2018), [self.pimpisole()], laCueva)
 	
-	/*method inicializate1()
-	{
-		const cisne = self.cisne()
-		const laFamilia = self.laFamilia()
-		
-		const joaquin = self.joaquin()
-		const lucia = self.lucia()
-		
-		const lunaPark_20_04_2017 = self.lunaPark_20_04_2017()
-		const laTrastienda_15_11_2017 = self.laTrastienda_15_11_2017()
-		
-	}*/
 
 }

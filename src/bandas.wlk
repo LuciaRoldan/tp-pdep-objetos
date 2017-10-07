@@ -7,7 +7,7 @@ class Banda
 	
 	constructor(unosMusicos, unRepresentante, unosAlbumes)
 	{
-		self.musicos(unosMusicos)
+		self.agregaMusicos(unosMusicos)
 		self.representante(unRepresentante)
 		self.agregaAlbumes(unosAlbumes)
 	}
@@ -17,6 +17,13 @@ class Banda
 	{
 		musicos = unosMusicos
 	}
+	
+	method agregaMusicos(unosMusicos)
+	{
+		musicos.addAll(unosMusicos)
+		musicos.forEach({musico => musico.agrupate(self)})
+	}
+	
 	method representante() = representante
 	method representante(unoRepresentante)
 	{

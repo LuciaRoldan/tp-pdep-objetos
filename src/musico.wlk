@@ -39,11 +39,11 @@ class Musico
 	}
 	method agrupate(grupoNuevo)
 	{
-		tipoDeMusico.grupo(true)
+		self.tipoDeMusico().grupo(true)
 	}
 	method dejaGrupo()
 	{
-		tipoDeMusico.grupo(false)
+		self.tipoDeMusico().grupo(false)
 	}
 	method albumes() = albumes
 	method agregaAlbum(unAlbum)
@@ -195,7 +195,7 @@ class MusicoPopular
 }
 
 
-object luisAlberto inherits Musico(null, null, new CobraPorFecha(new Date(01,09,2017), 1000, 20))
+object luisAlberto inherits Musico(new MusicoPopular(100), null, new CobraPorFecha(new Date(01,09,2017), 1000, 20))
 {
 	var guitarra = fender
 	
