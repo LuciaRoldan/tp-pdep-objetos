@@ -23,11 +23,11 @@ class Banda
 		representante = unoRepresentante
 	}
 	method albumes() = albumes
-	method sumaHabilidades() = self.musicos().sum({musico => musico.habilidad()}) + representante.habilidad()
+	method sumaHabilidades() = self.musicos().sum({musico => musico.habilidad()})
 	method habilidad() = self.sumaHabilidades() * (1 + 0.1)
-	method cobra() = self.musicos().sum({musico => musico.cobra()}) + representante.cobra()
+	method cobra(presentacion) = self.musicos().sum({musico => musico.cobra(presentacion)}) + representante.cobra()
 	method interpretaBien(cancion) = self.musicos().all({musico => musico.interpretaBien(cancion)})
-	method
+	method agregaAlbumes(unosAlbumes) = self.albumes().addAll(unosAlbumes)
 }
 
 class Representante 

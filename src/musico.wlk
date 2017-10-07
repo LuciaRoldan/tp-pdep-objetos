@@ -66,7 +66,7 @@ class Musico
 	}
 	method esDeTuAutoria(cancion) = self.canciones().contains(cancion)
 	method sosHabilidoso() = self.habilidad() > 60 
-	method cualSabesInterpretar(listaDeCanciones) = listaDeCanciones.sortBy({ cancion => categoriaDeMusico.interpretaBien(cancion)})
+	method cualSabesInterpretar(listaDeCanciones) = listaDeCanciones.filter({ cancion => self.interpretaBien(cancion)})
 	
 }
 
@@ -79,7 +79,7 @@ class Palabrero
 		palabraMagica = unaPalabraMagica
 	}	
 	
-	method interpretaBien(cancion) = cancion.letra().contains(palabraMagica)
+	method interpretaBien(cancion) = cancion.letra().words().contains(palabraMagica)
 }
 
 class Larguero
@@ -101,7 +101,7 @@ class Larguero
 class Imparero
 {
 		
-	method interpretaBien(cancion) = (cancion.duracion().mod(2) != 0 )
+	method interpretaBien(cancion) = (cancion.duracion() % 2 != 0 )
 	
 }
 
@@ -143,13 +143,14 @@ class CobraPorFecha
 		cobro = unosPesos
 		adicional = 1 + unPorcentaje/100
 	}
+	method fecha() = fecha
 	
-	method cobra(presentacion,quien) = if (presentacion.fecha() < unaFecha) cobro else (cobro*adicional)
+	method cobra(presentacion,quien) = if (presentacion.fecha() < self.fecha()) cobro else (cobro*adicional)
 }
 
 class MusicoDeGrupo
 {
-	var grupo = true
+	var grupo = false
 	var numeroMagico
 	var habilidad
 	
@@ -174,7 +175,7 @@ class MusicoPopular
 {
 	
 	var habilidad
-	var grupo = false
+	var grupo = true
 	
 	constructor (unaHabilidad)
 	{
@@ -203,7 +204,6 @@ object luisAlberto inherits Musico(null, null, new CobraPorFecha(new Date(01,09,
 	{
 		guitarra = unaGuitarra
 	}
-	
 	override method habilidad() = (8 * self.guitarra().valor()).min(100)
 	override method interpretaBien(cancion) = true
 }

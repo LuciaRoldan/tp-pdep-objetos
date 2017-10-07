@@ -38,7 +38,7 @@ class Presentacion
 	method sosLugarConcurrido(unaCapacidad) = self.capacidad() > unaCapacidad
 	method sosUnicoArtista(artista) = self.artistas() == #{artista}
 	method vaATocar(artista) = self.artistas().contains(artista)
-	
+	method magia() = self.artistas().sum({artista => artista.habilidad()})
 }
 
 object lunaPark 
