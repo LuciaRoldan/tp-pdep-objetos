@@ -40,7 +40,7 @@ class Banda
 	method quimica() = 1 + 0.1
 	method integrantes()
 	{
-		const integrantes = []
+		const integrantes = #{}
 		integrantes.addAll(self.musicos())
 		integrantes.add(self.representante())
 		return integrantes
@@ -56,7 +56,12 @@ class Representante
 	var cobro
 	constructor (unosPesos)
 	{
-		cobro = unosPesos
+		self.cobro(unosPesos)
+	}
+	method cobro() = cobro
+	method cobro(unCobro)
+	{
+		cobro = unCobro
 	}
 	method cobra(presentacion) = cobro
 

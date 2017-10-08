@@ -94,14 +94,14 @@ class Larguero
 	
 	method numeroMagico() = numeroMagico
 	
-	method interpretaBien(cancion) = (cancion.duracion() > self.numeroMagico())
+	method interpretaBien(cancion) = cancion.duracion() > self.numeroMagico()
 	
 }
 
 class Imparero
 {
 		
-	method interpretaBien(cancion) = (cancion.duracion() % 2 != 0 )
+	method interpretaBien(cancion) = cancion.duracion() % 2 != 0 
 	
 }
 
