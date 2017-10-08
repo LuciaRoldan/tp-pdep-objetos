@@ -11,6 +11,11 @@ class Banda
 		self.representante(unRepresentante)
 		self.agregaAlbumes(unosAlbumes)
 	}
+	constructor(unosMusicos, unRepresentante)
+	{
+		self.musicos(unosMusicos)
+		self.representante(unRepresentante)
+	}
 	
 	method musicos() = musicos
 	method musicos(unosMusicos)
@@ -31,8 +36,16 @@ class Banda
 	}
 	method albumes() = albumes
 	method sumaHabilidades() = self.musicos().sum({musico => musico.habilidad()})
-	method habilidad() = self.sumaHabilidades() * (1 + 0.1)
-	method cobra(presentacion) = self.musicos().sum({musico => musico.cobra(presentacion)}) + representante.cobra()
+	method habilidad() = self.sumaHabilidades() * self.quimica()
+	method quimica() = 1 + 0.1
+	method integrantes()
+	{
+		const integrantes = []
+		integrantes.addAll(self.musicos())
+		integrantes.add(self.representante())
+		return integrantes
+	}
+	method cobra(presentacion) = self.integrantes().sum({integrante => integrante.cobra(presentacion)})
 	method interpretaBien(cancion) = self.musicos().all({musico => musico.interpretaBien(cancion)})
 	method agregaAlbumes(unosAlbumes) = self.albumes().addAll(unosAlbumes)
 }
@@ -40,11 +53,11 @@ class Banda
 class Representante 
 {
 
-	const cobro
+	var cobro
 	constructor (unosPesos)
 	{
 		cobro = unosPesos
 	}
-	method cobra() = cobro
+	method cobra(presentacion) = cobro
 
 }

@@ -27,8 +27,8 @@ object objetitoMagico
 	method joaquin() = new Musico(new MusicoDeGrupo(20,5), new Larguero(300),new CobraPorMusico(100))
 	method lucia() = new Musico(new MusicoPopular(70), new Palabrero("familia"), new CobraPorCapacidad(500, 5000))
 		
-	method eternoRetorno() = new Banda(#{self.kike(), luisAlberto}, new Representante(500), #{})
-	method pimpisole() = new Banda(#{self.joaquin(), self.lucia(), self.soledad()}, new Representante(1982), #{})
+	method eternoRetorno() = new Banda(#{self.kike(), luisAlberto}, new Representante(500))
+	method pimpisole() = new Banda(#{self.joaquin(), self.lucia(), self.soledad()}, new Representante(1982))
 		
 	method remixLaFamilia() = new Remix(self.laFamilia())
 	method mashupAlmaDeCrisantemo() = new Mashup([self.almaDeDiamante(), self.crisantemo()])

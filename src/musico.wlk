@@ -9,7 +9,7 @@ class Musico
 {
 	const albumes = #{}
 	var tipoDeMusico
-	var categoriaDeMusico
+	var formaDeInterpretarBien
 	var tipoDeCobro
 	
 	constructor (unTipoDeMusico, unaCategoriaDeMusico, unTipoDeCobro)
@@ -20,17 +20,17 @@ class Musico
 	}
 	
 	method habilidad() = tipoDeMusico.habilidad()
-	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| categoriaDeMusico.interpretaBien(cancion)
+	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| formaDeInterpretarBien.interpretaBien(cancion)
 	method cobra(presentacion) = tipoDeCobro.cobra(presentacion,self)
 	method tipoDeMusico() = tipoDeMusico
 	method tipoDeMusico(unTipoDeMusico) 
 	{
 		tipoDeMusico = unTipoDeMusico
 	}
-	method categoriaDeMusico() = categoriaDeMusico
-	method categoriaDeMusico(unaCategoriaDeMusico) 
+	method formaDeInterpretarBien() = formaDeInterpretarBien
+	method formaDeInterpretarBien(unaFormaDeInterpretarBien) 
 	{
-		categoriaDeMusico = unaCategoriaDeMusico
+		formaDeInterpretarBien = unaFormaDeInterpretarBien
 	}
 	method tipoDeCobro() = tipoDeCobro
 	method tipoDeCobro(unTipoDeCobro) 
@@ -66,7 +66,7 @@ class Musico
 	}
 	method esDeTuAutoria(cancion) = self.canciones().contains(cancion)
 	method sosHabilidoso() = self.habilidad() > 60 
-	method cualSabesInterpretar(listaDeCanciones) = listaDeCanciones.filter({ cancion => self.interpretaBien(cancion)})
+	method cualSabesInterpretar(canciones) = canciones.filter({ cancion => self.interpretaBien(cancion)})
 	
 }
 
@@ -143,9 +143,8 @@ class CobraPorFecha
 		cobro = unosPesos
 		adicional = 1 + unPorcentaje/100
 	}
-	method fecha() = fecha
 	
-	method cobra(presentacion,quien) = if (presentacion.fecha() < self.fecha()) cobro else (cobro*adicional)
+	method cobra(presentacion,quien) = if (presentacion.fecha() < fecha) cobro else (cobro*adicional)
 }
 
 class MusicoDeGrupo
