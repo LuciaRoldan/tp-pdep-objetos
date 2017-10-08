@@ -49,12 +49,12 @@ describe "Entrega3"
 	
 	test "Si buscamos la cancion mas larga segun duracion, del album 'Especial La Familia' encontramos 'La Familia'" 
 	{
-		assert.equals(laFamilia, especialLaFamilia.compararCanciones(duracion))
+		assert.equals(laFamilia, especialLaFamilia.compararCanciones(extencionDuracion))
 	}
 	
 	test "Si buscamos la cancion mas larga segun duracion, del album 'La Sole' encontramos 'Corazon Americano'" 
 	{
-		assert.equals(corazonAmericano, laSole.compararCanciones(duracion))
+		assert.equals(corazonAmericano, laSole.compararCanciones(extencionDuracion))
 	}
 	
 	test "Si buscamos la cancion mas larga segun extencion de la letra, del album 'La Sole' encontramos 'Eres'" 
@@ -113,6 +113,7 @@ describe "Entrega3"
 		const soledad = objetitoMagico.soledad()
 		soledad.agregaAlbum(laSole)
 		soledad.habilidad(80)
+		soledad.tipoDeMusico().grupo(false)
 		pdepalooza.agregaArtista(soledad)
 		assert.that(pdepalooza.artistas().contains(soledad))
 	}

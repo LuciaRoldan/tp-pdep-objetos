@@ -15,7 +15,7 @@ class Musico
 	constructor (unTipoDeMusico, unaCategoriaDeMusico, unTipoDeCobro)
 	{
 		self.tipoDeMusico(unTipoDeMusico)
-		self.categoriaDeMusico(unaCategoriaDeMusico)
+		self.formaDeInterpretarBien(unaCategoriaDeMusico)
 		self.tipoDeCobro(unTipoDeCobro)
 	}
 	

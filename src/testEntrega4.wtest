@@ -61,20 +61,20 @@ describe "Entrega4"
 	
 	test "Si Joaquin pasa a ser imparero, sigue interpretando bien la cancion 'La Familia'"
 	{
-		joaquin.categoriaDeMusico(new Imparero())
+		joaquin.formaDeInterpretarBien(new Imparero())
 		assert.that(joaquin.interpretaBien(laFamilia))
 	}
 	
 	test "Si Joaquin pasa a ser imparero, ya no interpretando bien la cancion 'Cisne'"
 	{
-		joaquin.categoriaDeMusico(new Imparero())
+		joaquin.formaDeInterpretarBien(new Imparero())
 		assert.notThat(joaquin.interpretaBien(cisne))
 	}
 	
 	test "Si Kike pasa a ser palabrero (con su palabra magica siendo 'de'), interpreta bien  “Corazon americano”, “Eres”, “Alma de diamante” y “Crisantemo”
          de 'Corazon americano', 'Eres', 'La familia', 'Cisne', 'Alma de diamante', 'Cancion de Alicia en el pais' y 'Crisantemo'"
 	{
-		kike.categoriaDeMusico(new Palabrero("de"))
+		kike.formaDeInterpretarBien(new Palabrero("de"))
 		assert.equals(kike.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
 			[corazonAmericano, eres, almaDeDiamante, crisantemo])
 	}
@@ -88,7 +88,7 @@ describe "Entrega4"
 	
 	test "Si cambiamos a Joaquin a palabrero (con su palabra siendo 'Xilofon' y consultamos lo mismo del test anterior, obtenemos “La familia”"
 	{
-		joaquin.categoriaDeMusico(new Palabrero("xilofon"))
+		joaquin.formaDeInterpretarBien(new Palabrero("xilofon"))
 		assert.equals(joaquin.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
 			[laFamilia])
 	}
@@ -96,7 +96,7 @@ describe "Entrega4"
 	test "Si Lucia pasa a ser imparera, de “Corazon americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, 
          “Cancion de Alicia en el pais” y “Crisantemo” solo interpreta bien 'Eres' y 'Crisantemo'"
 	{
-		lucia.categoriaDeMusico(new Imparero())
+		lucia.formaDeInterpretarBien(new Imparero())
 		assert.equals(lucia.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
 			[eres, crisantemo])
 	}
@@ -146,9 +146,9 @@ describe "Entrega4"
 		assert.equals(elEternoRetorno.habilidad(), 154)
 	}
 	
-	test "La magia del show de Prix D'Ami es 234"
+	test "La magia del show de Prix D'Ami es 209"
 	{
-		assert.equals(prixDAmi_30_06_2017.magia(), 234)
+		assert.equals(prixDAmi_30_06_2017.magia(), 209)
 	}
 	
 	test "Pimpisole no interpreta bien la cancion 'Cisne'"

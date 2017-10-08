@@ -36,12 +36,12 @@ class Mashup inherits Cancion
 	constructor(canciones) = super
 	(
 		canciones.map({cancion => cancion.titulo()}).join(" "),
-		canciones.map({cancion => cancion.duracion()}).max(),
+		canciones.max({cancion => cancion.duracion()}),
 		canciones.map({cancion => cancion.letra()}).join(" ")
 	)
 }
 
-object duracion
+object extencionDuracion
 {
 	method compara (unTema) = unTema.duracion()
 }
