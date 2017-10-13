@@ -4,46 +4,21 @@ import guitarra.*
 import musico.*
 import album.*
 
-
-class Musico 
+class MusicoAbstracto
 {
 	const albumes = #{}
-	var tipoDeMusico
-	var formaDeInterpretarBien
 	var tipoDeCobro
 	
-	constructor (unTipoDeMusico, unaCategoriaDeMusico, unTipoDeCobro)
+	constructor (unTipoDeCobro)
 	{
-		self.tipoDeMusico(unTipoDeMusico)
-		self.formaDeInterpretarBien(unaCategoriaDeMusico)
 		self.tipoDeCobro(unTipoDeCobro)
 	}
 	
-	method habilidad() = tipoDeMusico.habilidad()
-	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| formaDeInterpretarBien.interpretaBien(cancion)
 	method cobra(presentacion) = tipoDeCobro.cobra(presentacion,self)
-	method tipoDeMusico() = tipoDeMusico
-	method tipoDeMusico(unTipoDeMusico) 
-	{
-		tipoDeMusico = unTipoDeMusico
-	}
-	method formaDeInterpretarBien() = formaDeInterpretarBien
-	method formaDeInterpretarBien(unaFormaDeInterpretarBien) 
-	{
-		formaDeInterpretarBien = unaFormaDeInterpretarBien
-	}
 	method tipoDeCobro() = tipoDeCobro
 	method tipoDeCobro(unTipoDeCobro) 
 	{
 		tipoDeCobro = unTipoDeCobro
-	}
-	method agrupate(grupoNuevo)
-	{
-		self.tipoDeMusico().grupo(true)
-	}
-	method dejaGrupo()
-	{
-		self.tipoDeMusico().grupo(false)
 	}
 	method albumes() = albumes
 	method agregaAlbum(unAlbum)
@@ -60,13 +35,52 @@ class Musico
 	method queCancionesTuyasContienen(palabraBuscada) = self.canciones().filter({cancion => cancion.contenes(palabraBuscada)})
 	method cuantoDuraTuObra() = self.canciones().sum({cancion => cancion.duracion()})
 	method laPegaste() = self.albumes().all({album => album.tuvisteBuenasVentas()})
+	method esDeTuAutoria(cancion) = self.canciones().contains(cancion)
+	method sosHabilidoso()
+	method cualSabesInterpretar(canciones)
+}
+
+class Musico inherits MusicoAbstracto
+{
+	var formaDeInterpretarBien
+	var tipoDeMusico
+	
+	constructor (unTipoDeMusico, unaCategoriaDeMusico, unTipoDeCobro) = super (unTipoDeCobro)
+	{
+		self.tipoDeMusico(unTipoDeMusico)
+		self.formaDeInterpretarBien(unaCategoriaDeMusico)
+	}
+	
+	method tipoDeMusico() = tipoDeMusico
+	method tipoDeMusico(unTipoDeMusico) 
+	{
+		tipoDeMusico = unTipoDeMusico
+	}
+	method formaDeInterpretarBien() = formaDeInterpretarBien
+	method formaDeInterpretarBien(unaFormaDeInterpretarBien) 
+	{
+		formaDeInterpretarBien = unaFormaDeInterpretarBien
+	}
+	
+	
+	method agrupate(grupoNuevo)
+	{
+		self.tipoDeMusico().estasEnGrupo(true)
+	}
+	method dejaGrupo()
+	{
+		self.tipoDeMusico().estasEnGrupo(false)
+	}
+	
+	override method sosHabilidoso() = self.habilidad() > 60 
+	override method cualSabesInterpretar(canciones) = canciones.filter({ cancion => self.interpretaBien(cancion)})
+	
+	method habilidad() = tipoDeMusico.habilidad()
 	method habilidad(unaHabilidad)
 	{
 		tipoDeMusico.habilidad(unaHabilidad)
 	}
-	method esDeTuAutoria(cancion) = self.canciones().contains(cancion)
-	method sosHabilidoso() = self.habilidad() > 60 
-	method cualSabesInterpretar(canciones) = canciones.filter({ cancion => self.interpretaBien(cancion)})
+	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| formaDeInterpretarBien.interpretaBien(cancion)
 	
 }
 
@@ -149,7 +163,7 @@ class CobraPorFecha
 
 class MusicoDeGrupo
 {
-	var grupo = false
+	var estasEnGrupo = true
 	var numeroMagico
 	var habilidad
 	
@@ -158,12 +172,12 @@ class MusicoDeGrupo
 		habilidad = unaHabilidad
 		numeroMagico = unNumeroMagico
 	}
-	method grupo() = grupo
-	method grupo(grupete)
+	method estasEnGrupo() = estasEnGrupo
+	method estasEnGrupo(grupete)
 	{
-		grupo = grupete
+		estasEnGrupo = grupete
 	}
-	method habilidad() = if(self.grupo().negate()) habilidad else (habilidad + numeroMagico)
+	method habilidad() = if(self.estasEnGrupo()) (habilidad + numeroMagico) else habilidad
 	method habilidad(unaHabilidad)
 	{
 		habilidad = unaHabilidad
@@ -174,19 +188,19 @@ class MusicoPopular
 {
 	
 	var habilidad
-	var grupo = true
+	var estasEnGrupo = false
 	
 	constructor (unaHabilidad)
 	{
 		habilidad = unaHabilidad
 	}
 	
-	method grupo() = grupo
-	method grupo(grupete)
+	method estasEnGrupo() = estasEnGrupo
+	method estasEnGrupo(grupete)
 	{
-		grupo = grupete
+		estasEnGrupo = grupete
 	}
-	method habilidad() = if(self.grupo().negate()) habilidad else (habilidad -20)
+	method habilidad() = if(self.estasEnGrupo()) (habilidad -20) else habilidad
 	method habilidad(unaHabilidad)
 	{
 		habilidad = unaHabilidad
@@ -194,7 +208,7 @@ class MusicoPopular
 }
 
 
-object luisAlberto inherits Musico(new MusicoPopular(100), null, new CobraPorFecha(new Date(01,09,2017), 1000, 20))
+object luisAlberto inherits MusicoAbstracto(new CobraPorFecha(new Date(01,09,2017), 1000, 20))
 {
 	var guitarra = fender
 	
@@ -202,7 +216,10 @@ object luisAlberto inherits Musico(new MusicoPopular(100), null, new CobraPorFec
 	method guitarra(unaGuitarra)
 	{
 		guitarra = unaGuitarra
-	}
-	override method habilidad() = (8 * self.guitarra().valor()).min(100)
-	override method interpretaBien(cancion) = true
+	}	
+	method habilidad() = (8 * self.guitarra().valor()).min(100)
+	method interpretaBien(cancion) = true
+	
+	override method sosHabilidoso() = self.habilidad() > 60 
+	override method cualSabesInterpretar(canciones) = canciones.filter({ cancion => self.interpretaBien(cancion)})
 }

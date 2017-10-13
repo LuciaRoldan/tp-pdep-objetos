@@ -1,8 +1,8 @@
 import presentacion.*
+import album.*
 import cancion.*
 import guitarra.*
 import musico.*
-import album.*
 import restricciones.*
 import inicializate.*
 
@@ -72,11 +72,11 @@ describe "Entrega3"
 		assert.equals(remixLaFamilia.letra(), "Mueve tu cuelpo baby Quiero brindar por mi gente sencilla, por el amor brindo por la familia yeah oh yeah")
 	}
 	
-	test "Si hacemos un mashup de 'Alma De Diamante' y 'Crisantemo' se concatena la letra de 'Alma De Diamante' con la de 'Crisantemo' en ese orden" 
+ 	test "Si hacemos un mashup de 'Alma De Diamante' y 'Crisantemo' se concatena la letra de 'Alma De Diamante' con la de 'Crisantemo' en ese orden" 
 	{
 		assert.equals(mashupAlmaDeCrisantemo.letra(), "Ven a mi con tu dulce luz alma de diamante. Y aunque el sol se nuble despues sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asi con la humanidad alma de diamante Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo")
 	}
-	
+
 	test "Podemos agregar a Luis Alberto al recital de Pdpalooza" 
 	{
 		pdepalooza.agregaArtista(luisAlberto)
@@ -113,7 +113,7 @@ describe "Entrega3"
 		const soledad = objetitoMagico.soledad()
 		soledad.agregaAlbum(laSole)
 		soledad.habilidad(80)
-		soledad.tipoDeMusico().grupo(false)
+		soledad.tipoDeMusico().estasEnGrupo(false)
 		pdepalooza.agregaArtista(soledad)
 		assert.that(pdepalooza.artistas().contains(soledad))
 	}

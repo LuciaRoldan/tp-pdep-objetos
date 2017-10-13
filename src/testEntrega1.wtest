@@ -92,7 +92,7 @@ describe "Entrega1"
 
 	test "Lucia interpreta bien la cancion 'Cisne' como solista"
 	{
-		lucia.tipoDeMusico().grupo(false)
+		lucia.tipoDeMusico().estasEnGrupo(false)
 		assert.that(lucia.interpretaBien(cisne))
 	}
 

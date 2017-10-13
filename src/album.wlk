@@ -36,6 +36,6 @@ class Album {
 	}
 	method tuCancionMasLarga() = self.compararCanciones(extencionLetra)
 	method tuvisteBuenasVentas() = self.unidadesVendidas() > (self.unidadesQueSalieronALaVenta()*(0.75)) 
-	method compararCanciones(unCriterio) = self.temas().max({cancion => unCriterio.compara(cancion)})
+	method compararCanciones(unCriterio) = unCriterio.compara(self.temas())
 }
 	
