@@ -22,13 +22,16 @@ object objetitoMagico
 	method paraLosArboles() = new Album("paraLosArboles",[self.cisne(),self.almaDeDiamante()],new Date(31,03,2003),50.000,49.000)
 	method justCrisantemo() = new Album("justCrisantemo",[self.crisantemo()],new Date(05,12,2007),28.000,27.500)
 		
-	method kike() = new Musico(new MusicoDeGrupo(60,20),new Imparero(),new CobraPorFecha(new Date(08,01,2018),4000,50))
-	method soledad() = new Musico(new MusicoPopular(55), new Palabrero("amor"), new CobraPorMusico(6000))
-	method joaquin() = new Musico(new MusicoDeGrupo(20,5), new Larguero(300),new CobraPorMusico(100))
-	method lucia() = new Musico(new MusicoPopular(70), new Palabrero("familia"), new CobraPorCapacidad(500, 5000))
+	method kike() = new Musico(60, new MusicoDeGrupo(20),new Imparero(),new CobraPorFecha(new Date(08,01,2018),4000,50))
+	method soledad() = new Musico(55, new MusicoPopular(), new Palabrero("amor"), new CobraPorMusico(6000))
+	method joaquin() = new Musico(20, new MusicoDeGrupo(5), new Larguero(300),new CobraPorMusico(100))
+	method lucia() = new Musico(70, new MusicoPopular(), new Palabrero("familia"), new CobraPorCapacidad(500, 5000)) 
 		
-	method eternoRetorno() = new Banda(#{self.kike(), luisAlberto}, new Representante(500))
-	method pimpisole() = new Banda(#{self.joaquin(), self.lucia(), self.soledad()}, new Representante(1982))
+	method felix() = new Representante(500)
+	method cachorro() = new Representante(1982)
+		
+	method eternoRetorno() = new Banda(#{self.kike(), luisAlberto}, self.felix())
+	method pimpisole() = new Banda(#{self.joaquin(), self.lucia(), self.soledad()}, self.cachorro())
 		
 	method remixLaFamilia() = new Remix(self.laFamilia())
 	method mashupAlmaDeCrisantemo() = new Mashup([self.almaDeDiamante(), self.crisantemo()])

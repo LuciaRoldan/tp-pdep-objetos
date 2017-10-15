@@ -74,6 +74,7 @@ describe "Entrega4"
 	test "Si Kike pasa a ser palabrero (con su palabra magica siendo 'de'), interpreta bien  “Corazon americano”, “Eres”, “Alma de diamante” y “Crisantemo”
          de 'Corazon americano', 'Eres', 'La familia', 'Cisne', 'Alma de diamante', 'Cancion de Alicia en el pais' y 'Crisantemo'"
 	{
+		kike.tipoDeMusico().estasEnGrupo(false)
 		kike.formaDeInterpretarBien(new Palabrero("de"))
 		assert.equals(kike.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
 			[corazonAmericano, eres, almaDeDiamante, crisantemo])
@@ -96,6 +97,7 @@ describe "Entrega4"
 	test "Si Lucia pasa a ser imparera, de “Corazon americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, 
          “Cancion de Alicia en el pais” y “Crisantemo” solo interpreta bien 'Eres' y 'Crisantemo'"
 	{
+		lucia.tipoDeMusico().estasEnGrupo(true)
 		lucia.formaDeInterpretarBien(new Imparero())
 		assert.equals(lucia.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
 			[eres, crisantemo])
@@ -141,14 +143,14 @@ describe "Entrega4"
 		assert.equals(laCueva_05_01_2018.costo(), 5532)
 	}
 	
-	test "La habilidad de El Eterno Retorno es 154"
+	test "La habilidad de El Eterno Retorno es 176"
 	{
-		assert.equals(elEternoRetorno.habilidad(), 154)
+		assert.equals(elEternoRetorno.habilidad(), 176)
 	}
 	
-	test "La magia del show de Prix D'Ami es 209"
+	test "La magia del show de Prix D'Ami es 256"
 	{
-		assert.equals(prixDAmi_30_06_2017.magia(), 209)
+		assert.equals(prixDAmi_30_06_2017.magia(), 256)
 	}
 	
 	test "Pimpisole no interpreta bien la cancion 'Cisne'"

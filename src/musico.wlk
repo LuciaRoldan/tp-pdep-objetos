@@ -38,15 +38,19 @@ class MusicoAbstracto
 	method esDeTuAutoria(cancion) = self.canciones().contains(cancion)
 	method sosHabilidoso()
 	method cualSabesInterpretar(canciones)
+	method habilidad()
+	method interpretaBien(unaCancion)
 }
 
 class Musico inherits MusicoAbstracto
 {
 	var formaDeInterpretarBien
 	var tipoDeMusico
+	var habilidadBase
 	
-	constructor (unTipoDeMusico, unaCategoriaDeMusico, unTipoDeCobro) = super (unTipoDeCobro)
+	constructor (unaHabilidadBase, unTipoDeMusico, unaCategoriaDeMusico, unTipoDeCobro) = super (unTipoDeCobro)
 	{
+		self.habilidadBase(unaHabilidadBase)
 		self.tipoDeMusico(unTipoDeMusico)
 		self.formaDeInterpretarBien(unaCategoriaDeMusico)
 	}
@@ -61,8 +65,11 @@ class Musico inherits MusicoAbstracto
 	{
 		formaDeInterpretarBien = unaFormaDeInterpretarBien
 	}
-	
-	
+	method habilidadBase() = habilidadBase
+	method habilidadBase(unaHabilidadBase)
+	{
+		habilidadBase = unaHabilidadBase
+	}
 	method agrupate(grupoNuevo)
 	{
 		self.tipoDeMusico().estasEnGrupo(true)
@@ -75,12 +82,12 @@ class Musico inherits MusicoAbstracto
 	override method sosHabilidoso() = self.habilidad() > 60 
 	override method cualSabesInterpretar(canciones) = canciones.filter({ cancion => self.interpretaBien(cancion)})
 	
-	method habilidad() = tipoDeMusico.habilidad()
+	override method habilidad() = tipoDeMusico.habilidad(self.habilidadBase())
 	method habilidad(unaHabilidad)
 	{
 		tipoDeMusico.habilidad(unaHabilidad)
 	}
-	method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| formaDeInterpretarBien.interpretaBien(cancion)
+	override method interpretaBien(cancion) = self.esDeTuAutoria(cancion) || self.sosHabilidoso()|| formaDeInterpretarBien.interpretaBien(cancion)
 	
 }
 
@@ -165,11 +172,9 @@ class MusicoDeGrupo
 {
 	var estasEnGrupo = true
 	var numeroMagico
-	var habilidad
 	
-	constructor (unaHabilidad, unNumeroMagico)
+	constructor (unNumeroMagico)
 	{
-		habilidad = unaHabilidad
 		numeroMagico = unNumeroMagico
 	}
 	method estasEnGrupo() = estasEnGrupo
@@ -177,34 +182,19 @@ class MusicoDeGrupo
 	{
 		estasEnGrupo = grupete
 	}
-	method habilidad() = if(self.estasEnGrupo()) (habilidad + numeroMagico) else habilidad
-	method habilidad(unaHabilidad)
-	{
-		habilidad = unaHabilidad
-	}
+	method habilidad(unaHabilidad) = if(self.estasEnGrupo()) (unaHabilidad + numeroMagico) else unaHabilidad
 }
 
 class MusicoPopular
 {
-	
-	var habilidad
 	var estasEnGrupo = false
-	
-	constructor (unaHabilidad)
-	{
-		habilidad = unaHabilidad
-	}
 	
 	method estasEnGrupo() = estasEnGrupo
 	method estasEnGrupo(grupete)
 	{
 		estasEnGrupo = grupete
 	}
-	method habilidad() = if(self.estasEnGrupo()) (habilidad -20) else habilidad
-	method habilidad(unaHabilidad)
-	{
-		habilidad = unaHabilidad
-	}
+	method habilidad(unaHabilidad) = if(self.estasEnGrupo()) (unaHabilidad -20) else unaHabilidad
 }
 
 
@@ -217,9 +207,8 @@ object luisAlberto inherits MusicoAbstracto(new CobraPorFecha(new Date(01,09,201
 	{
 		guitarra = unaGuitarra
 	}	
-	method habilidad() = (8 * self.guitarra().valor()).min(100)
-	method interpretaBien(cancion) = true
-	
+	override method habilidad() = (8 * self.guitarra().valor()).min(100)
+	override method interpretaBien(cancion) = true
 	override method sosHabilidoso() = self.habilidad() > 60 
 	override method cualSabesInterpretar(canciones) = canciones.filter({ cancion => self.interpretaBien(cancion)})
 }

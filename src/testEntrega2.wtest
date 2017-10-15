@@ -36,7 +36,6 @@ describe "Entrega2"
 		paraLosArboles = new Album("paraLosArboles",[cisne,almaDeDiamante],new Date(31,03,2003),50.000,49.000)
 		justCrisantemo = new Album("justCrisantemo",[crisantemo],new Date(05,12,2007),28.000,27.500)
 		
-		
 		soledad = objetitoMagico.soledad()
 		joaquin = objetitoMagico.joaquin()
 		

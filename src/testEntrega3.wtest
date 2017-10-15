@@ -112,7 +112,7 @@ describe "Entrega3"
 	{
 		const soledad = objetitoMagico.soledad()
 		soledad.agregaAlbum(laSole)
-		soledad.habilidad(80)
+		soledad.habilidadBase(80)
 		soledad.tipoDeMusico().estasEnGrupo(false)
 		pdepalooza.agregaArtista(soledad)
 		assert.that(pdepalooza.artistas().contains(soledad))
