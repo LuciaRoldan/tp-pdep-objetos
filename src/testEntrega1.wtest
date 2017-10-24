@@ -1,0 +1,169 @@
+import presentacion.*
+import cancion.*
+import guitarra.*
+import musico.*
+import album.*
+import inicializate.*
+
+describe "Entrega1" 
+{
+	const cisne
+	const laFamilia
+	const lunaPark_20_04_2017
+	const laTrastienda_15_11_2017
+	const joaquin
+	const lucia
+	
+	fixture
+	{
+		cisne = objetitoMagico.cisne()
+		laFamilia = objetitoMagico.laFamilia()
+		
+		joaquin = objetitoMagico.joaquin()
+		lucia = objetitoMagico.lucia()
+		
+		lunaPark_20_04_2017 = objetitoMagico.lunaPark_20_04_2017()
+		laTrastienda_15_11_2017 = objetitoMagico.laTrastienda_15_11_2017()
+	}
+	
+	test "Si Joaquin canta en el grupo Pimpinela, su habilidad es 25" 
+	{
+		joaquin.agrupate("pimpinela")
+		assert.equals(joaquin.habilidad(),25)
+	}
+
+	test "Si Joaquin canta en el grupo Pimpinela, y decide lanzar su carrera solista (deja el grupo), su habilidad es 20"
+	{
+		joaquin.dejaGrupo()
+		assert.equals(joaquin.habilidad(),20)
+	}
+
+	test "Si Lucia canta en el grupo Pimpinela, su habilidad es 50"
+	{
+		lucia.agrupate("pimpinela")
+		assert.equals(lucia.habilidad(),50)
+	}
+
+	test "Si Lucia canta en el grupo Pimpinela, y lanza su carrera solista (deja el grupo), su habilidad es 70"
+	{
+		lucia.dejaGrupo()
+		assert.equals(lucia.habilidad(),70)
+	}
+
+	test "Si Luis Alberto toca con la Fender, su habilidad es 80"
+	{
+		luisAlberto.guitarra(fender)
+		assert.equals(luisAlberto.habilidad(),80)
+	}
+
+	test "Si Luis Alberto toca con la Gibson sana, su habilidad es 100"
+	{
+		luisAlberto.guitarra(gibson)
+		assert.equals(luisAlberto.habilidad(),100)
+	}
+
+	test "Si Luis Alberto toca con la Gibson rota, su habilidad es 40"
+	{
+		gibson.estasRota()
+		luisAlberto.guitarra(gibson)
+		assert.equals(luisAlberto.habilidad(),40)
+	}
+
+
+	test "Joaquin interpreta bien la cancion 'La Familia'"
+	{
+		const especialLaFamilia = new Album("especialLaFamilia",[laFamilia],new Date(17,06,1992),100.000,89.000)
+		joaquin.agregaAlbum(especialLaFamilia)
+		assert.that(joaquin.interpretaBien(laFamilia))
+	}
+
+
+
+	test "Joaquin interpreta bien la cancion 'Cisne'"
+	{
+		assert.that(joaquin.interpretaBien(cisne))
+	}
+
+
+	test "Lucia interpreta bien la cancion 'La Familia'"
+	{
+		assert.that(lucia.interpretaBien(laFamilia))
+	}
+
+	test "Lucia interpreta bien la cancion 'Cisne' como solista"
+	{
+		lucia.tipoDeMusico().estasEnGrupo(false)
+		assert.that(lucia.interpretaBien(cisne))
+	}
+
+	test "Lucia no interpreta bien la cancion 'Cisne' en grupo"
+	{
+		lucia.agrupate("pimpinela")
+		assert.that(lucia.interpretaBien(cisne).negate())
+	}
+
+	test "Luis Alberto interpreta bien la cancion 'La Familia'"
+	{
+		assert.that(luisAlberto.interpretaBien(laFamilia))
+	}
+
+
+	test "Luis Alberto interpreta bien la cancion 'Cisne'"
+	{
+		assert.that(luisAlberto.interpretaBien(cisne))
+	}
+
+	test "Joaquin cobra 50 por la presentacion del Luna Park"
+	{
+		assert.equals(joaquin.cobra(lunaPark_20_04_2017),50)
+	}
+
+	test "Joaquin cobra 100 por la presentacion de la Trastienda del 15/11/2017, si es el unico artista"
+	{
+		laTrastienda_15_11_2017.agregaArtistas([joaquin])
+		assert.equals(joaquin.cobra(laTrastienda_15_11_2017),100)
+	}
+
+	test "La capacidad de La Trastienda para el 05 de agosto del 2017 es de 700"
+	{
+		laTrastienda_15_11_2017.fecha(new Date(05,08,2017))
+		assert.equals(laTrastienda_15_11_2017.capacidad(),700)
+	}
+
+	test "La capacidad de La Trastienda para el 08 de agosto del 2017 es de 400"
+	{
+		laTrastienda_15_11_2017.fecha(new Date(08,08,2017))
+		assert.equals(laTrastienda_15_11_2017.capacidad(),400)
+	}
+
+	test "Lucia cobra 500 por la presentacion del Luna Park"
+	{
+		assert.equals(lucia.cobra(lunaPark_20_04_2017),500)
+	}
+
+	test "Lucia cobra 400 por la presentacion de la Trastienda"
+	{
+		assert.equals(lucia.cobra(laTrastienda_15_11_2017),400)
+	}
+
+	test "Luis Alberto cobra 1000 por la presentacion del Luna Park"
+	{
+		assert.equals(luisAlberto.cobra(lunaPark_20_04_2017),1000)
+	}
+
+	test "Luis Alberto cobra 1200 por la presentacion de La Trastienda"
+	{
+		assert.equals(luisAlberto.cobra(laTrastienda_15_11_2017),1200)
+	}
+
+	test "El costo de la presentacion del Luna Park es 1550"
+	{
+		assert.equals(lunaPark_20_04_2017.costo(),1550)
+	}
+
+	test "El costo de la presentacion de la Trastienda el 15/11/2017 es 1650"
+	{
+		assert.equals(laTrastienda_15_11_2017.costo(),1650)
+	}
+}
+

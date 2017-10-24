@@ -1,0 +1,166 @@
+import presentacion.*
+import cancion.*
+import guitarra.*
+import musico.*
+import album.*
+import restricciones.*
+import inicializate.*
+
+describe "Entrega4" 
+{	
+	const joaquin
+	const kike
+	const lucia
+	
+	const elEternoRetorno
+	const pimpisole
+	
+	const cisne
+	const laFamilia
+	
+	const eres
+	const corazonAmericano
+	const almaDeDiamante
+	const crisantemo
+	const especialLaFamilia
+	const laSole
+	const paraLosArboles
+	const justCrisantemo
+	const cancionDeAliciaEnElPais
+	
+	const prixDAmi_30_06_2017
+	const laCueva_05_01_2018
+ 
+	fixture
+	{
+		joaquin = objetitoMagico.joaquin()
+		kike = objetitoMagico.kike()
+		lucia = objetitoMagico.lucia()
+		
+		elEternoRetorno = objetitoMagico.eternoRetorno()
+		pimpisole = objetitoMagico.pimpisole()
+		
+		cisne = objetitoMagico.cisne()
+		laFamilia = objetitoMagico.laFamilia()
+		eres = objetitoMagico.eres()
+		corazonAmericano = objetitoMagico.corazonAmericano()
+		almaDeDiamante = objetitoMagico.almaDeDiamante()
+		crisantemo = objetitoMagico.crisantemo()
+		cancionDeAliciaEnElPais = objetitoMagico.cancionDeAliciaEnElPais()
+		
+		especialLaFamilia = new Album("especialLaFamilia",[laFamilia],new Date(17,06,1992),100.000,89.000)
+		laSole = new Album("laSole",[eres,corazonAmericano],new Date(04,02,2005),200.000,130.000)
+		paraLosArboles = new Album("paraLosArboles",[cisne,almaDeDiamante],new Date(31,03,2003),50.000,49.000)
+		justCrisantemo = new Album("justCrisantemo",[crisantemo],new Date(05,12,2007),28.000,27.500)
+		
+		prixDAmi_30_06_2017 = objetitoMagico.prixDAmi_30_06_2017()
+		laCueva_05_01_2018 = objetitoMagico.laCueva_05_01_2018()
+		
+		joaquin.agregaAlbum(especialLaFamilia)
+	}
+	
+	test "Si Joaquin pasa a ser imparero, sigue interpretando bien la cancion 'La Familia'"
+	{
+		joaquin.formaDeInterpretarBien(new Imparero())
+		assert.that(joaquin.interpretaBien(laFamilia))
+	}
+	
+	test "Si Joaquin pasa a ser imparero, ya no interpretando bien la cancion 'Cisne'"
+	{
+		joaquin.formaDeInterpretarBien(new Imparero())
+		assert.notThat(joaquin.interpretaBien(cisne))
+	}
+	
+	test "Si Kike pasa a ser palabrero (con su palabra magica siendo 'de'), interpreta bien  “Corazon americano”, “Eres”, “Alma de diamante” y “Crisantemo”
+         de 'Corazon americano', 'Eres', 'La familia', 'Cisne', 'Alma de diamante', 'Cancion de Alicia en el pais' y 'Crisantemo'"
+	{
+		kike.tipoDeMusico().estasEnGrupo(false)
+		kike.formaDeInterpretarBien(new Palabrero("de"))
+		assert.equals(kike.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
+			[corazonAmericano, eres, almaDeDiamante, crisantemo])
+	}
+	
+	test "Si clasificamos  “Corazón americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, “Cancion de Alicia en el pais” y “Crisantemo”
+         segun si Joaquin las interpreta bien, obtenemos “La familia”, “Cisne” y “Cancion de Alicia en el pais”"
+	{
+		assert.equals(joaquin.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
+			[laFamilia, cisne, cancionDeAliciaEnElPais])
+	}
+	
+	test "Si cambiamos a Joaquin a palabrero (con su palabra siendo 'Xilofon' y consultamos lo mismo del test anterior, obtenemos “La familia”"
+	{
+		joaquin.formaDeInterpretarBien(new Palabrero("xilofon"))
+		assert.equals(joaquin.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
+			[laFamilia])
+	}
+	
+	test "Si Lucia pasa a ser imparera, de “Corazon americano”, “Eres”, “La familia”, “Cisne”, “Alma de diamante”, 
+         “Cancion de Alicia en el pais” y “Crisantemo” solo interpreta bien 'Eres' y 'Crisantemo'"
+	{
+		lucia.tipoDeMusico().estasEnGrupo(true)
+		lucia.formaDeInterpretarBien(new Imparero())
+		assert.equals(lucia.cualSabesInterpretar([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]),
+			[eres, crisantemo])
+	}
+	
+	test "Si Joaquin pasa a cobrar por expectativa inflacionaria ($1000 y a partir de 02/17 un 20% mas), cobra $1200 por la presentacion de Prix D'Ami"
+	{
+		joaquin.tipoDeCobro(new CobraPorFecha(new Date(01,02,2017), 1000, 20))
+		assert.equals(joaquin.cobra(prixDAmi_30_06_2017), 1200)
+	}
+	
+	test "Si cambiamos la fecha de la presentacion en Prix D'Ami al 24/01/2017 y preuntamos lo anterior, Joaquin cobra $1000"
+	{
+		prixDAmi_30_06_2017.fecha(new Date(24,01,2017))
+		joaquin.tipoDeCobro(new CobraPorFecha(new Date(01,02,2017), 1000, 20))
+		assert.equals(joaquin.cobra(prixDAmi_30_06_2017), 1000)
+	}
+	
+	test "Joaquin, sin nungun cambio, cobra $50 por la presentacion en Prix D'Ami"
+	{
+		assert.equals(joaquin.cobra(prixDAmi_30_06_2017), 50)
+	}
+	
+	test "Ahora Joaquin cobra $2500 por presentaciones con capacidad de hasta 13000 personas, 
+          preguntamos cuanto cobra por la presentacion en Prix D'Ami y descubrimos que cobra $2400"
+	{
+		joaquin.tipoDeCobro(new CobraPorCapacidad(2500,13000))
+		assert.equals(joaquin.cobra(prixDAmi_30_06_2017), 2400)
+	}
+	
+	test "El Eterno Retorno cobra $5500 por el show de Prix D'Ami"
+	{
+		assert.equals(elEternoRetorno.cobra(prixDAmi_30_06_2017), 5500)
+	}
+	
+	test "El costo total del show de Prix D'Ami es $8550"
+	{
+		assert.equals(prixDAmi_30_06_2017.costo(), 8550)
+	}
+	
+	test "El costo total del show de La Cueva es $5532"
+	{
+		assert.equals(laCueva_05_01_2018.costo(), 5532)
+	}
+	
+	test "La habilidad de El Eterno Retorno es 176"
+	{
+		assert.equals(elEternoRetorno.habilidad(), 176)
+	}
+	
+	test "La magia del show de Prix D'Ami es 256"
+	{
+		assert.equals(prixDAmi_30_06_2017.magia(), 256)
+	}
+	
+	test "Pimpisole no interpreta bien la cancion 'Cisne'"
+	{
+		assert.notThat(pimpisole.interpretaBien(cisne))
+	}
+	
+	test "El Eterno Retorno puede interpretar bien la cancion 'Crisantemo'"
+	{
+		assert.that(elEternoRetorno.interpretaBien(crisantemo))
+	}
+
+}
